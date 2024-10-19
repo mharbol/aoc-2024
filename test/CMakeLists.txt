@@ -1,0 +1,34 @@
+
+set(PROJECT_GTEST_HASH 03597a01ee50ed33e9dfd640b249b4be3799d395)
+
+include(FetchContent)
+FetchContent_Declare(
+    googletest
+    DOWNLOAD_EXTRACT_TIMESTAMP true
+    URL https://github.com/google/googletest/archive/${PROJECT_GTEST_HASH}.zip
+)
+# For Windows: Prevent overriding the parent project's compiler/linker settings
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
+
+add_library(test_setup INTERFACE)
+
+enable_testing()
+
+add_executable(
+    aoc_test
+    test_days.cpp
+    solutiontest.cpp
+)
+target_include_directories(test_setup INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_link_libraries(
+    aoc_test
+    test_setup
+    cxx_setup
+    tools_lib
+    solution_lib
+    GTest::gtest_main
+)
+
+include(GoogleTest)
+gtest_discover_tests(aoc_test)
