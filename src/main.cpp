@@ -11,6 +11,10 @@ int main(int argc, char **argv) {
     }
     const auto lines = aoc::readInput(args.getFilePath());
     const auto solution = aoc::Solution::getDay(args.getDay());
+    if (nullptr == solution) {
+        std::cout << "No Solution for day " << args.getDay() << "." << std::endl;
+        return 1;
+    }
     if (1 == args.getPart()) {
         std::cout << solution->part1(lines) << std::endl;
     } else {

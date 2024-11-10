@@ -8,10 +8,11 @@
 
 namespace aoc {
 
-void testSolution(size_t day, const std::string part1, const std::string part2) {
+void testSolution(const size_t day, const std::string &part1, const std::string &part2) {
 
     std::ostringstream input_file{};
 
+    // the way ctest works, this acts like it is being called inside build/test/
     input_file << "../../resources/" << "day" << std::setw(2) << std::setfill('0') << day
                << ".txt";
 

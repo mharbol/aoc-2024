@@ -7,7 +7,11 @@
 #include <cstdint>
 #include <string>
 #include <vector>
+
 namespace aoc {
+/**
+ * Example problem for initial setup and testing. Taken from AoC 2023 Day 13.
+ */
 class Day00 : public Solution {
 public:
     std::string part1(const std::vector<std::string> &lines) override;
