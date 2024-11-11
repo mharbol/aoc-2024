@@ -11,6 +11,5 @@ std::vector<std::string> aoc::readInput(const std::string &file_path) noexcept {
     while (std::getline(file, line)) {
         ret.push_back(std::move(line));
     }
-    file.close();
     return ret;
 }
