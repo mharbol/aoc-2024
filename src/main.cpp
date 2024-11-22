@@ -5,7 +5,7 @@
 
 int main(const int argc, const char **const argv) {
 
-    aoc::ArgParse args;
+    aoc::ArgParse args{};
 
     const aoc::ArgParse::Status status = args.parseArgs(argc, argv);
 

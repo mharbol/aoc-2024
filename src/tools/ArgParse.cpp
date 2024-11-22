@@ -59,7 +59,7 @@ void ArgParse::processDay(size_t &idx, const std::vector<std::string> &args) {
     try {
         day_flag = true;
         day = std::stoi(args.at(++idx));
-        if (0 > day || 25 < day) {
+        if (1 > day || 25 < day) {
             err = "Day must be between 1 and 25.";
         }
     } catch (const std::invalid_argument &) {
@@ -99,7 +99,7 @@ void ArgParse::processFile(size_t &idx, const std::vector<std::string> &args) {
             err = "Could not find input file '" + input_file + "'.";
         }
     } catch (const std::out_of_range &) {
-        err = "Expected input file after '-f'";
+        err = "Expected input file after '-f'.";
     }
 }
 
