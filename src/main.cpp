@@ -3,12 +3,21 @@
 #include "tools/fileread.h"
 #include <iostream>
 
-int main(int argc, char **argv) {
+int main(const int argc, const char **const argv) {
+
     aoc::ArgParse args;
-    if (!args.parseArgs(argc, argv)) {
-        args.showErrors();
+
+    const aoc::ArgParse::Status status = args.parseArgs(argc, argv);
+
+    if (aoc::ArgParse::Status::HELP == status) {
+        args.showHelp();
+        return 0;
+    } else if (aoc::ArgParse::Status::FAIL == status) {
+        std::cout << args.getErrorMsg() << "\n\n";
+        args.showUsage();
         return 1;
     }
+
     const auto lines = aoc::readInput(args.getFilePath());
     const auto solution = aoc::Solution::getDay(args.getDay());
     if (nullptr == solution) {

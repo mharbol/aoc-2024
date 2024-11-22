@@ -12,27 +12,44 @@ namespace aoc {
 class ArgParse {
 public:
     /**
+     * Return status for parseArgs.
+     */
+    enum Status { HELP, OK, FAIL };
+
+    /**
      * Parse the arguments as they are passed into `main()`.
      * @param argc number of arguments
      * @param argv the array of arguments
-     * @return true if parsing was successful otherwise false
+     * @return status indicating the parser's result
      */
+    Status parseArgs(const int argc, const char **const argv) noexcept;
 
-    bool parseArgs(int argc, char **argv) noexcept;
     /**
-     * Display errors if any. Only effective after a call to `parseArgs()`.
+     * Displays the usage of this application to the console.
      */
-    void showErrors();
+    void showUsage() const;
+
+    /**
+     * Displays the usage and help message to the console.
+     */
+    void showHelp() const;
 
     ArgParse() = default;
     ~ArgParse() = default;
 
 private:
-    bool setInt(const char *str, const size_t min_size, const size_t max_size, size_t &num);
-    std::vector<std::string> errs{};
+    void processDay(size_t &idx, const std::vector<std::string> &args);
+    void processPart(size_t &idx, const std::vector<std::string> &args);
+    void processFile(size_t &idx, const std::vector<std::string> &args);
+    std::string err{};
     std::string input_file{};
-    size_t day{};
-    size_t part{};
+    int32_t day{99};
+    int32_t part{99};
+    static const std::string usage;
+    static const std::string help_msg;
+
+    // indicate that this value  has already been set
+    bool help_flag{}, day_flag{}, part_flag{}, file_flag{};
 
 public:
     inline size_t getDay() const {
@@ -43,6 +60,10 @@ public:
     }
     inline std::string getFilePath() const {
         return input_file;
+    }
+
+    inline std::string &getErrorMsg() {
+        return err;
     }
 };
 } // namespace aoc

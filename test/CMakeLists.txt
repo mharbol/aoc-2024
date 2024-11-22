@@ -18,6 +18,7 @@ enable_testing()
 add_executable(
     aoc_test
     test_days.cpp
+    test_argparse.cpp
     solutiontest.cpp
 )
 target_include_directories(test_setup INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
