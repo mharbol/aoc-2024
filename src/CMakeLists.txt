@@ -5,10 +5,10 @@ add_executable(
 target_link_libraries(
     ${PROJECT_NAME} PRIVATE
     cxx_setup
-    tools_lib
+    util_lib
     solution_lib
 )
-add_subdirectory(tools)
+add_subdirectory(util)
 add_subdirectory(solution)
 add_custom_command(
     TARGET ${PROJECT_NAME}

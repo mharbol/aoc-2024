@@ -1,4 +1,4 @@
-#include "tools/ArgParse.h"
+#include "util/ArgParse.h"
 #include <gtest/gtest.h>
 
 TEST(TestArgParse, TestValidInputs) {

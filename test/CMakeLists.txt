@@ -18,6 +18,7 @@ enable_testing()
 add_executable(
     aoc_test
     test_argparse.cpp
+    test_vennspan.cpp
     test_days.cpp
     solutiontest.cpp
 )
@@ -26,7 +27,7 @@ target_link_libraries(
     aoc_test
     test_setup
     cxx_setup
-    tools_lib
+    util_lib
     solution_lib
     GTest::gtest_main
 )

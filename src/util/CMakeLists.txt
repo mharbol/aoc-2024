@@ -1,10 +1,11 @@
 
 add_library(
-    tools_lib
+    util_lib
     ArgParse.cpp
     fileread.cpp
+    VennSpan.cpp
 )
 target_link_libraries(
-    tools_lib PRIVATE
+    util_lib PRIVATE
     cxx_setup
 )

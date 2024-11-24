@@ -1,5 +1,5 @@
 
-#include "tools/ArgParse.h"
+#include "util/ArgParse.h"
 #include <filesystem>
 #include <iostream>
 #include <stdexcept>
@@ -59,7 +59,7 @@ void ArgParse::processDay(size_t &idx, const std::vector<std::string> &args) {
     try {
         day_flag = true;
         day = std::stoi(args.at(++idx));
-        if (1 > day || 25 < day) {
+        if (0 > day || 25 < day) {
             err = "Day must be between 1 and 25.";
         }
     } catch (const std::invalid_argument &) {
