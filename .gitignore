@@ -37,3 +37,6 @@
 
 # cmake
 build/
+
+# stuff from working problems
+example.txt
