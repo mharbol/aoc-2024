@@ -7,5 +7,5 @@ TEST(TestDay, Day00) {
 }
 
 TEST(TestDay, Day01) {
-    aoc::testSolution(1, "", "");
+    aoc::testSolution(1, "1579939", "20351745");
 }
