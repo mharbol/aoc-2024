@@ -11,6 +11,8 @@ public:
     std::string part2(const std::vector<std::string> &lines) override;
 
 private:
+    bool isSafe(const std::string &);
+    bool isDampenSafe(const std::string &);
 };
 } // namespace aoc
 #endif
