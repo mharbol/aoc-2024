@@ -1,5 +1,6 @@
 
 #include "solution/Day02.h"
+#include <algorithm>
 #include <sstream>
 #include <string>
 #include <vector>
@@ -39,15 +40,12 @@ bool Day02::isSafe(const std::string &report) {
         diffs.push_back(curr - *iter);
         curr = *iter++;
     }
-
     const bool increasing = diffs.at(0) > 0;
-    for (const auto diff : diffs) {
-        if (0 == diff || std::abs(diff) > 3 || (increasing && diff < 0) ||
-            (!increasing && diff > 0)) {
-            return false;
-        }
-    }
-    return true;
+
+    return std::all_of(diffs.begin(), diffs.end(), [&increasing](int32_t diff) {
+        return 0 != diff && std::abs(diff) <= 3 &&
+               ((increasing && 0 < diff) || (!increasing && 0 > diff));
+    });
 }
 
 bool Day02::isDampenSafe(const std::string &report) {
