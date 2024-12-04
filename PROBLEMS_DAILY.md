@@ -18,4 +18,4 @@ Not the most optimal, but it works.
 I heard that library was terrible but it was not too bad to make a pretty simple solution.
 For part 2 I had a bit of a gotcha in that the "do" state would get reset to true on each line.
 Once I figured that out it was not too bad of a problem.
-Of course I got a little help verifying my patterns with (regex101)[https://regex101.com/].
+Of course I got a little help verifying my patterns with [regex101](https://regex101.com/).
