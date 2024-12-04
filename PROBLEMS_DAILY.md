@@ -19,3 +19,9 @@ I heard that library was terrible but it was not too bad to make a pretty simple
 For part 2 I had a bit of a gotcha in that the "do" state would get reset to true on each line.
 Once I figured that out it was not too bad of a problem.
 Of course I got a little help verifying my patterns with [regex101](https://regex101.com/).
+
+## [Day 4](https://adventofcode.com/2024/day/4)
+For [today](src/solution/Day04.cpp), part 2 was easier than part 1.
+Making an 'X' finder function made what would be a lot of checks really quick.
+For part 1 I had to do the classic search all 8 ways and worry about out of bounds...
+one day I'll do that efficiently.
