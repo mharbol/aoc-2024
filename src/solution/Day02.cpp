@@ -49,9 +49,6 @@ bool Day02::isSafe(const std::string &report) {
 }
 
 bool Day02::isDampenSafe(const std::string &report) {
-    if (isSafe(report)) {
-        return true;
-    }
     std::vector<int32_t> levels{};
     std::stringstream str(report);
     std::string level{};
