@@ -25,3 +25,9 @@ For [today](src/solution/Day04.cpp), part 2 was easier than part 1.
 Making an 'X' finder function made what would be a lot of checks really quick.
 For part 1 I had to do the classic search all 8 ways and worry about out of bounds...
 one day I'll do that efficiently.
+
+## [Day 5](https://adventofcode.com/2024/day/5)
+[Today's solution](src/solution/Day04.cpp) took a minute to get up and going.
+For part one I made a map to all the pages that must be after a number and made sure they were not before it.
+In part two, I built up the correct ordering by adding a new page and bubbling it down to where it was valid before inserting
+and bubbling down the next one.
