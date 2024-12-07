@@ -6,6 +6,7 @@
 namespace aoc {
 
 std::string Day05::part1(const std::vector<std::string> &lines) {
+
     size_t acc{};
     auto const &order_rules = getOrderRules(lines);
     for (const auto &page_list : getPages(lines)) {
@@ -29,6 +30,7 @@ std::string Day05::part2(const std::vector<std::string> &lines) {
 
 std::map<size_t, std::set<size_t>> Day05::getOrderRules(
     const std::vector<std::string> &lines) {
+
     std::map<size_t, std::set<size_t>> ret{};
     for (auto iter = lines.begin(); !iter->empty(); ++iter) {
         const size_t left = std::stoi(iter->substr(0, 2));
@@ -57,8 +59,9 @@ std::vector<std::vector<size_t>> Day05::getPages(const std::vector<std::string> 
     return ret;
 }
 
-bool Day05::verifyPages(
-    const std::vector<size_t> &pages, const std::map<size_t, std::set<size_t>> &rules) {
+bool Day05::verifyPages(const std::vector<size_t> &pages,
+    const std::map<size_t, std::set<size_t>> &rules) {
+
     std::set<size_t> prev{};
     for (size_t page : pages) {
         if (rules.contains(page)) {
@@ -73,8 +76,8 @@ bool Day05::verifyPages(
     return true;
 }
 
-size_t Day05::fixPages(
-    const std::vector<size_t> &pages, const std::map<size_t, std::set<size_t>> &order_rules) {
+size_t Day05::fixPages(const std::vector<size_t> &pages,
+    const std::map<size_t, std::set<size_t>> &order_rules) {
 
     std::vector<size_t> correct{};
 

@@ -40,6 +40,7 @@ std::string Day04::part2(const std::vector<std::string> &lines) {
 
 size_t Day04::xmasSearch(const std::vector<std::string> &lines, const int32_t row,
     const int32_t col, const int32_t right, const int32_t down) {
+
     try {
         if ('M' == lines.at(row + down).at(col + right) &&
             'A' == lines.at(row + 2 * down).at(col + 2 * right) &&
