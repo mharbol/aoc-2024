@@ -33,7 +33,7 @@ In part two, I built up the correct ordering by adding a new page and bubbling i
 and bubbling down the next one.
 
 ## [Day 6](https://adventofcode.com/2024/day/6)
-[Today](src/solution/Day04.cpp) was not the prettiest but it works.
+[Today](src/solution/Day06.cpp) was not the prettiest but it works.
 I used a slightly different implementation originally for part 1 (marked the visited grids with a different character for counting),
 but creating the set of pairs was needed for part 2 so I cleaned up the first one to use that utility instead.
 For part 2, I realized I only needed to test the positions that would be in the path followed by part 1 and tested them all.
