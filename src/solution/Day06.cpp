@@ -16,28 +16,25 @@ std::string Day06::part2(const std::vector<std::string> &lines) {
     const size_t guard_row_orig = guard_row;
     const size_t guard_col_orig = guard_col;
 
-    for (const auto &path_point : walkAndRecord(lines)) {
-        if (guard_row_orig == path_point.first && guard_col_orig == path_point.second) {
+    for (const auto &[row, col] : walkAndRecord(lines)) {
+        if (guard_row_orig == row && guard_col_orig == col) {
             continue;
         }
         guard_row = guard_row_orig;
         guard_col = guard_col_orig;
 
-        lines_cpy.at(path_point.first).at(path_point.second) = '#';
+        lines_cpy.at(row).at(col) = '#';
         acc += loops(lines_cpy);
-        lines_cpy.at(path_point.first).at(path_point.second) = '.';
+        lines_cpy.at(row).at(col) = '.';
     }
     return std::to_string(acc);
 }
 
 void Day06::getGuardPos(const std::vector<std::string> &lines) {
-    guard_row = -1;
-    guard_col = -1;
-    for (size_t row = 0; row < lines.size() && guard_row == -1; ++row) {
-        for (size_t col = 0; col < lines.at(row).size() && guard_col == -1; ++col) {
-            if ('^' == lines.at(row).at(col)) {
-                guard_row = row;
-                guard_col = col;
+    for (guard_row = 0; guard_row < lines.size(); ++guard_row) {
+        for (guard_col = 0; guard_col < lines.at(guard_row).size(); ++guard_col) {
+            if ('^' == lines.at(guard_row).at(guard_col)) {
+                return;
             }
         }
     }

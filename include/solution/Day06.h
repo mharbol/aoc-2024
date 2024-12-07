@@ -15,8 +15,9 @@ public:
     std::string part2(const std::vector<std::string> &lines) override;
 
 private:
-    int32_t guard_row;
-    int32_t guard_col;
+    size_t guard_row;
+    size_t guard_col;
+
     void getGuardPos(const std::vector<std::string> &);
     std::set<std::pair<size_t, size_t>> walkAndRecord(const std::vector<std::string> &);
     size_t loops(const std::vector<std::string> &);
