@@ -44,4 +44,3 @@ To make it a bit faster, I only logged when the guard took a turn and checked fo
 [Today's solution](src/solution/Day07.cpp) was a fun recursion problem.
 The hardest part was finally getting to a place where `std::stoi` throws because a parsed value is greater than 32 bits.
 It took me a bit of time to realize that and replace it with `std::stoul` and then the rest was smooth sailing.
-Fortunately the added operation in part 2 did not make the program horribly slow.

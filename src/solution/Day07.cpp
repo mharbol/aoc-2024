@@ -1,5 +1,6 @@
 
 #include "solution/Day07.h"
+#include <cstddef>
 #include <sstream>
 
 namespace aoc {
@@ -43,6 +44,9 @@ bool Day07::calibrationResult(size_t target, size_t result, const std::vector<si
     if (numbers.size() == ++idx) {
         return target == result;
     }
+    if (result > target) {
+        return false;
+    }
     return calibrationResult(target, result + numbers.at(idx), numbers, idx) ||
            calibrationResult(target, result * numbers.at(idx), numbers, idx);
 }
@@ -53,11 +57,18 @@ bool Day07::calibrationResultConcat(size_t target, size_t result,
     if (numbers.size() == ++idx) {
         return target == result;
     }
-    std::stringstream ss{};
-    ss << result << numbers.at(idx);
-    const size_t concat_res = std::stoul(ss.str());
+    if (result > target) {
+        return false;
+    }
+    size_t res = result;
+    size_t right = numbers.at(idx);
+    while (right) {
+        res *= 10;
+        right /= 10;
+    }
+
     return calibrationResultConcat(target, result + numbers.at(idx), numbers, idx) ||
            calibrationResultConcat(target, result * numbers.at(idx), numbers, idx) ||
-           calibrationResultConcat(target, concat_res, numbers, idx);
+           calibrationResultConcat(target, res + numbers.at(idx), numbers, idx);
 }
 } // namespace aoc
