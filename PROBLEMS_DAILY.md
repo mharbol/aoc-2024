@@ -39,3 +39,9 @@ but creating the set of pairs was needed for part 2 so I cleaned up the first on
 For part 2, I realized I only needed to test the positions that would be in the path followed by part 1 and tested them all.
 The only consideration to add was that I needed to account for direction travelled to be sure I was in a cyclic state.
 I am sure there is a faster way to do this but not about to optimize something that runs in a few seconds.
+
+## [Day 7](https://adventofcode.com/2024/day/7)
+[Today's solution](src/solution/Day07.cpp) was a fun recursion problem.
+The hardest part was finally getting to a place where `std::stoi` throws because a parsed value is greater than 32 bits.
+It took me a bit of time to realize that and replace it with `std::stoul` and then the rest was smooth sailing.
+Fortunately the added operation in part 2 did not make the program horribly slow.
