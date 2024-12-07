@@ -20,3 +20,6 @@ TEST(TestDay, Day04) {
 TEST(TestDay, Day05) {
     aoc::testSolution(5, "6612", "4944");
 }
+TEST(TestDay, Day06) {
+    aoc::testSolution(6, "4778", "1618");
+}

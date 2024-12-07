@@ -31,3 +31,11 @@ one day I'll do that efficiently.
 For part one I made a map to all the pages that must be after a number and made sure they were not before it.
 In part two, I built up the correct ordering by adding a new page and bubbling it down to where it was valid before inserting
 and bubbling down the next one.
+
+## [Day 6](https://adventofcode.com/2024/day/6)
+[Today](src/solution/Day04.cpp) was not the prettiest but it works.
+I used a slightly different implementation originally for part 1 (marked the visited grids with a different character for counting),
+but creating the set of pairs was needed for part 2 so I cleaned up the first one to use that utility instead.
+For part 2, I realized I only needed to test the positions that would be in the path followed by part 1 and tested them all.
+The only consideration to add was that I needed to account for direction travelled to be sure I was in a cyclic state.
+I am sure there is a faster way to do this but not about to optimize something that runs in a few seconds.
