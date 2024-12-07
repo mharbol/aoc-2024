@@ -9,14 +9,7 @@ std::string Day07::part1(const std::vector<std::string> &lines) {
     size_t target{};
     std::vector<size_t> nums{};
     for (const auto &line : lines) {
-        nums.clear();
-        const size_t colon_pos = line.find(':');
-        target = std::stoul(line.substr(0, colon_pos));
-        std::stringstream str(line.substr(colon_pos + 2));
-        std::string num{};
-        while (std::getline(str, num, ' ')) {
-            nums.push_back(std::stoi(num));
-        }
+        parse(line, target, nums);
         acc += calibrationResult(target, nums.at(0), nums, 0);
     }
     return std::to_string(acc);
@@ -27,23 +20,27 @@ std::string Day07::part2(const std::vector<std::string> &lines) {
     size_t target{};
     std::vector<size_t> nums{};
     for (const auto &line : lines) {
-        nums.clear();
-        const size_t colon_pos = line.find(':');
-        target = std::stoul(line.substr(0, colon_pos));
-        std::stringstream str(line.substr(colon_pos + 2));
-        std::string num{};
-        while (std::getline(str, num, ' ')) {
-            nums.push_back(std::stoi(num));
-        }
+        parse(line, target, nums);
         acc += calibrationResultConcat(target, nums.at(0), nums, 0);
     }
     return std::to_string(acc);
 }
 
+void Day07::parse(const std::string &line, size_t &target, std::vector<size_t> &numbers) {
+    numbers.clear();
+    const size_t colon_pos = line.find(':');
+    target = std::stoul(line.substr(0, colon_pos));
+    std::stringstream str(line.substr(colon_pos + 2));
+    std::string num{};
+    while (std::getline(str, num, ' ')) {
+        numbers.push_back(std::stoi(num));
+    }
+}
+
 size_t Day07::calibrationResult(size_t target, size_t result,
     const std::vector<size_t> &numbers, size_t idx) {
-    ++idx;
-    if (numbers.size() == idx) {
+
+    if (numbers.size() == ++idx) {
         return (target == result) ? target : 0;
     }
     return (target == calibrationResult(target, result + numbers.at(idx), numbers, idx) ||
@@ -52,8 +49,8 @@ size_t Day07::calibrationResult(size_t target, size_t result,
 
 size_t Day07::calibrationResultConcat(size_t tgt, size_t result,
     const std::vector<size_t> &numbers, size_t idx) {
-    ++idx;
-    if (numbers.size() == idx) {
+
+    if (numbers.size() == ++idx) {
         return (tgt == result) ? tgt : 0;
     }
     std::stringstream ss{};

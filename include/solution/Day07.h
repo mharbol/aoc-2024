@@ -12,6 +12,7 @@ public:
     std::string part2(const std::vector<std::string> &lines) override;
 
 private:
+    void parse(const std::string &line, size_t &target, std::vector<size_t> &numbers);
     size_t calibrationResult(size_t target, size_t result, const std::vector<size_t> &numbers,
         size_t idx);
     size_t calibrationResultConcat(size_t target, size_t result,
