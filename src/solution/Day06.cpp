@@ -80,26 +80,17 @@ size_t Day06::loops(const std::vector<std::string> &lines) {
         for (;;) {
             if ('#' == lines.at(guard_row + y).at(guard_col + x)) {
                 switch (dir) {
-                    case UP:
-                        dir = RIGHT;
-                        x = 1;
-                        y = 0;
-                        break;
-                    case RIGHT:
-                        dir = DOWN;
-                        x = 0;
-                        y = 1;
-                        break;
-                    case DOWN:
-                        dir = LEFT;
-                        x = -1;
-                        y = 0;
-                        break;
-                    case LEFT:
-                        dir = UP;
-                        x = 0;
-                        y = -1;
-                        break;
+                    case UP: dir = RIGHT; break;
+                    case RIGHT: dir = DOWN; break;
+                    case DOWN: dir = LEFT; break;
+                    case LEFT: dir = UP; break;
+                }
+                if (0 == x) {
+                    x = -y;
+                    y = 0;
+                } else {
+                    y = x;
+                    x = 0;
                 }
             } else {
                 guard_row += y;
