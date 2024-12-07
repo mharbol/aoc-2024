@@ -38,7 +38,7 @@ I used a slightly different implementation originally for part 1 (marked the vis
 but creating the set of pairs was needed for part 2 so I cleaned up the first one to use that utility instead.
 For part 2, I realized I only needed to test the positions that would be in the path followed by part 1 and tested them all.
 The only consideration to add was that I needed to account for direction travelled to be sure I was in a cyclic state.
-I am sure there is a faster way to do this but not about to optimize something that runs in a few seconds.
+To make it a bit faster, I only logged when the guard took a turn and checked for cycles then.
 
 ## [Day 7](https://adventofcode.com/2024/day/7)
 [Today's solution](src/solution/Day07.cpp) was a fun recursion problem.

@@ -79,6 +79,12 @@ size_t Day06::loops(const std::vector<std::string> &lines) {
     try {
         for (;;) {
             if ('#' == lines.at(guard_row + y).at(guard_col + x)) {
+                std::tuple<size_t, size_t, Direction> curr_pos{guard_row, guard_col, dir};
+                if (visited.contains(curr_pos)) {
+                    return 1;
+                } else {
+                    visited.insert(std::move(curr_pos));
+                }
                 switch (dir) {
                     case UP: dir = RIGHT; break;
                     case RIGHT: dir = DOWN; break;
@@ -95,12 +101,6 @@ size_t Day06::loops(const std::vector<std::string> &lines) {
             } else {
                 guard_row += y;
                 guard_col += x;
-                std::tuple<size_t, size_t, Direction> curr_pos{guard_row, guard_col, dir};
-                if (visited.contains(curr_pos)) {
-                    return 1;
-                } else {
-                    visited.insert(std::move(curr_pos));
-                }
             }
         }
     } catch (const std::out_of_range &) {
