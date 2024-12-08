@@ -44,3 +44,8 @@ To make it a bit faster, I only logged when the guard took a turn and checked fo
 [Today's solution](src/solution/Day07.cpp) was a fun recursion problem.
 The hardest part was finally getting to a place where `std::stoi` throws because a parsed value is greater than 32 bits.
 It took me a bit of time to realize that and replace it with `std::stoul` and then the rest was smooth sailing.
+
+## [Day 8](https://adventofcode.com/2024/day/8)
+[Today](src/solution/Day08.cpp) looks pretty scary but it was overall alright.
+In part 1 I just had to make sure all of my rules and checks worked both if the antennas were offset to the left or right.
+With part 2, my part 1 solution adapted fairly easily using the `gcd` of the row and column distances to get the antinodes.
