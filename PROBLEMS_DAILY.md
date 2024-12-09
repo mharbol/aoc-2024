@@ -49,3 +49,9 @@ It took me a bit of time to realize that and replace it with `std::stoul` and th
 [Today](src/solution/Day08.cpp) looks pretty scary but it was overall alright.
 In part 1 I just had to make sure all of my rules and checks worked both if the antennas were offset to the left or right.
 With part 2, my part 1 solution adapted fairly easily using the `gcd` of the row and column distances to get the antinodes.
+
+## [Day 9](https://adventofcode.com/2024/day/9)
+[Today](src/solution/Day09.cpp) was not super good.
+Finding the open spaces on the left and filled spaces on the right for part 1 was pretty simple.
+Part 2's open block finding was a little ugly but it works fast enough so I am not going to optimize it;
+I pretty much did exactly as the puzzle described and kept finding the nearest open spot on the left for the next file on the right.
