@@ -2,7 +2,6 @@
 add_library(
     solution_lib
     Solution.cpp 
-    Day00.cpp
     Day01.cpp
     Day02.cpp
     Day03.cpp

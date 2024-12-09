@@ -1,5 +1,4 @@
 #include "solution/Solution.h"
-#include "solution/Day00.h"
 #include "solution/Day01.h"
 #include "solution/Day02.h"
 #include "solution/Day03.h"
@@ -30,7 +29,6 @@
 
 std::unique_ptr<aoc::Solution> aoc::Solution::getDay(size_t day) {
     switch (day) {
-        case 0: return std::make_unique<aoc::Day00>();
         case 1: return std::make_unique<aoc::Day01>();
         case 2: return std::make_unique<aoc::Day02>();
         case 3: return std::make_unique<aoc::Day03>();
