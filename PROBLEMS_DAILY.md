@@ -55,3 +55,10 @@ With part 2, my part 1 solution adapted fairly easily using the `gcd` of the row
 Finding the open spaces on the left and filled spaces on the right for part 1 was pretty simple.
 Part 2's open block finding was a little ugly but it works fast enough so I am not going to optimize it;
 I pretty much did exactly as the puzzle described and kept finding the nearest open spot on the left for the next file on the right.
+
+## [Day 10](https://adventofcode.com/2024/day/10)
+Got a bit upset with myself on [today](src/solution/Day10.cpp)'s puzzle.
+Did part 2 first by accident by not reading the prompt carefully enough.
+It was a little disheartening to think I was messing up a simple depth first search before realizing that was not what the problem asked.
+Part 1 ended up being pretty much the same as part 2 but with counting distinct endpoints rather than distinct paths.
+My old friend `std::set` coming to the rescue again.
