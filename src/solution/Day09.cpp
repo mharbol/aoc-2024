@@ -58,8 +58,8 @@ void Day09::compressBlocks(std::vector<int32_t> &files) {
 
 void Day09::compressFiles(std::vector<int32_t> &files) {
 
-    size_t idx{files.size() - 1};
-    while (0 < idx) {
+    size_t idx{files.size()};
+    while (0 < --idx) {
         if (-1 != files.at(idx)) {
             const int32_t id = files.at(idx);
             const size_t right = idx;
@@ -72,14 +72,11 @@ void Day09::compressFiles(std::vector<int32_t> &files) {
             ++idx;
             int64_t free_idx = getFreeIdx(files, size);
             if (-1 == free_idx || static_cast<size_t>(free_idx) > idx) {
-                --idx;
                 continue;
             }
             for (size_t offset = 0; offset < size; ++offset) {
                 std::swap(files.at(idx + offset), files.at(free_idx + offset));
             }
-        } else {
-            --idx;
         }
     }
 }
