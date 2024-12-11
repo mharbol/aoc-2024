@@ -62,3 +62,10 @@ Did part 2 first by accident by not reading the prompt carefully enough.
 It was a little disheartening to think I was messing up a simple depth first search before realizing that was not what the problem asked.
 Part 1 ended up being pretty much the same as part 2 but with counting distinct endpoints rather than distinct paths.
 My old friend `std::set` coming to the rescue again.
+
+## [Day 11](https://adventofcode.com/2024/day/11)
+[Today](src/solution/Day11.cpp) was a fun exercise in memoization.
+Originally in part 1 I followed what the problem said to a T;
+I left `Day11::blink()` in the source just for reference.
+After the expand-and-add-to-the-list approach did not scale well, I heard "Hello, I'm Johnny Cache" and got to work on the final solution.
+I am amazed at the speed that approach achieved.
