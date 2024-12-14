@@ -75,3 +75,11 @@ I am amazed at the speed that approach achieved.
 I tried all sorts of silly things in part 1 before finally deciding to get the perimeters as part of my flood fill.
 Part 2 is where it gets really bad.
 I eventually got the `checkSides()` function working after an embarrassing amount of code duplication.
+
+## [Day 13](https://adventofcode.com/2024/day/13)
+Very happy with [today](src/solution/Day13.cpp).
+Right away, I realized this was just solving a system of linear equations and decided bust out the inverse 2x2 matrix formula to solve it.
+The red herring of today in the question was stating that you were looking for the minimum cost of pressing buttons.
+In a system like this, there are 0, 1, or infinite solutions.
+Fortunately none of the systems here were linearly dependant so I didn't have to handle that case, might be a cool go-back to add that
+just for completeness.
