@@ -11,8 +11,8 @@ std::string Day13::part1(const std::vector<std::string> &lines) {
 
     for (const auto &[a, b, prize] : parse(lines)) {
         const int64_t det = a.x * b.y - b.x * a.y;
-        int64_t a_press = (prize.x * b.y - prize.y * b.x) / det;
-        int64_t b_press = (a.x * prize.y - a.y * prize.x) / det;
+        const int64_t a_press = (prize.x * b.y - prize.y * b.x) / det;
+        const int64_t b_press = (a.x * prize.y - a.y * prize.x) / det;
         if (prize.x == a_press * a.x + b_press * b.x &&
             prize.y == a_press * a.y + b_press * b.y) {
             acc += 3 * a_press + b_press;
@@ -30,8 +30,8 @@ std::string Day13::part2(const std::vector<std::string> &lines) {
         prize.x += 10000000000000;
         prize.y += 10000000000000;
         const int64_t det = a.x * b.y - b.x * a.y;
-        int64_t a_press = (prize.x * b.y - prize.y * b.x) / det;
-        int64_t b_press = (a.x * prize.y - a.y * prize.x) / det;
+        const int64_t a_press = (prize.x * b.y - prize.y * b.x) / det;
+        const int64_t b_press = (a.x * prize.y - a.y * prize.x) / det;
         if (prize.x == a_press * a.x + b_press * b.x &&
             prize.y == a_press * a.y + b_press * b.y) {
             acc += 3 * a_press + b_press;
