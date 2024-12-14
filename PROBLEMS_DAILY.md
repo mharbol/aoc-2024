@@ -69,3 +69,9 @@ Originally in part 1 I followed what the problem said to a T;
 I left `Day11::blink()` in the source just for reference.
 After the expand-and-add-to-the-list approach did not scale well, I heard "Hello, I'm Johnny Cache" and got to work on the final solution.
 I am amazed at the speed that approach achieved.
+
+## [Day 12](https://adventofcode.com/2024/day/12)
+[This one](src/solution/Day12.cpp) has to be on the top of my list to clean up.
+I tried all sorts of silly things in part 1 before finally deciding to get the perimeters as part of my flood fill.
+Part 2 is where it gets really bad.
+I eventually got the `checkSides()` function working after an embarrassing amount of code duplication.
