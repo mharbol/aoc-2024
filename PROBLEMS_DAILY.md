@@ -83,3 +83,13 @@ The red herring of today in the question was stating that you were looking for t
 In a system like this, there are 0, 1, or infinite solutions.
 Fortunately none of the systems here were linearly dependant so I didn't have to handle that case, might be a cool go-back to add that
 just for completeness.
+
+## [Day 14](https://adventofcode.com/2024/day/14)
+I did not like the premise [today](src/solution/Day14.cpp)'s part 2.
+Personally, the problems should be well-defined and "most of the robots should arrange themselves into a picture of a Christmas tree"
+does not sit well with me.
+I know that sometimes the customer does not give good specifications or that you have to do a little digging to figure out what is going
+on or what you are looking for out of software behavior, but this misses both of those a bit too much for me.
+Either way, for part 1 I anticipated there being a really long series of steps for part 2 so I did some cool mod math to determine the final
+positions on one step.
+For part 2, I guessed that the tree would be solid and looked for an arbitrary amount of points that would all be right on top of each other.
