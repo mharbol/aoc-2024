@@ -36,7 +36,7 @@ std::pair<LanternfishWarehouse, std::vector<std::string>> Day15::parse(
 }
 
 LanternfishWarehouse::LanternfishWarehouse(std::vector<std::string> &&warehouse)
-    : warehouse(warehouse), width(warehouse.size()), height(warehouse.at(0).size()) {
+    : warehouse(warehouse), width(warehouse.at(0).size()), height(warehouse.size()) {
     for (robo_row = 0; robo_row < height; ++robo_row) {
         for (robo_col = 0; robo_col < width; ++robo_col) {
             if ('@' == warehouse.at(robo_row).at(robo_col)) {
