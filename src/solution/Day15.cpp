@@ -10,7 +10,7 @@ std::string Day15::part1(const std::vector<std::string> &lines) {
             warehouse.pushBox(move);
         }
     }
-    return std::to_string(warehouse.sumGPS());
+    return std::to_string(warehouse.sumGPS('O'));
 }
 
 std::string Day15::part2(const std::vector<std::string> &lines) {
@@ -20,7 +20,7 @@ std::string Day15::part2(const std::vector<std::string> &lines) {
             warehouse.pushWideBox(move);
         }
     }
-    return std::to_string(warehouse.sumWideGPS());
+    return std::to_string(warehouse.sumGPS('['));
 }
 
 std::pair<LanternfishWarehouse, std::vector<std::string>> Day15::parse(
@@ -180,23 +180,11 @@ void LanternfishWarehouse::pushWideVert(const size_t row, const size_t col, cons
     }
 }
 
-size_t LanternfishWarehouse::sumGPS() {
+size_t LanternfishWarehouse::sumGPS(const char box) {
     size_t ret{};
     for (size_t row = 0; row < height; ++row) {
         for (size_t col = 0; col < width; ++col) {
-            if ('O' == warehouse.at(row).at(col)) {
-                ret += 100 * row + col;
-            }
-        }
-    }
-    return ret;
-}
-
-size_t LanternfishWarehouse::sumWideGPS() {
-    size_t ret{};
-    for (size_t row = 0; row < height; ++row) {
-        for (size_t col = 0; col < width; ++col) {
-            if ('[' == warehouse.at(row).at(col)) {
+            if (box == warehouse.at(row).at(col)) {
                 ret += 100 * row + col;
             }
         }
