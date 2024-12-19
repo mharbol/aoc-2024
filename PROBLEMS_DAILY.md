@@ -93,3 +93,12 @@ on or what you are looking for out of software behavior, but this misses both of
 Either way, for part 1 I anticipated there being a really long series of steps for part 2 so I did some cool mod math to determine the final
 positions on one step.
 For part 2, I guessed that the tree would be solid and looked for an arbitrary amount of points that would all be right on top of each other.
+
+## [Day 15](https://adventofcode.com/2024/day/15)
+[Today](src/solution/Day15.cpp) is the first day of not doing the problems all on the day of.
+Not that either part needed a load of time to reason over and get a good solution on, they took just enough time and I have other things going on.
+In part 1 I could do the pushes in a while loop both ways.
+For part 2 I had to break the logic into can push and doing the push to avoid having to undo my steps if it turns out I could not move in that direction.
+The horizontal movement was pretty easy, but the vertical movement took some time before I was able to trust the recursion pushing the boxes vertically.
+Effectively I travel to the end of the stack and pull each box to it's spot from the top (or bottom, depending on the direction).
+Hopefully I close out these problems before January is too far gone.
