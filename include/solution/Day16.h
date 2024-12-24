@@ -4,11 +4,14 @@
 
 #include "Solution.h"
 #include <cstddef>
+#include <cstdint>
 #include <functional>
+#include <map>
 #include <queue>
 #include <set>
 #include <string>
 #include <tuple>
+#include <utility>
 #include <vector>
 
 namespace aoc {
@@ -18,9 +21,14 @@ struct MazeFrame {
     int32_t dr = 0;
     int32_t dc = 1;
     size_t score{};
+    std::set<std::pair<size_t, size_t>> history{};
+
     MazeFrame() = default;
     MazeFrame(size_t row, size_t col, int32_t dr, int32_t dc, size_t score)
         : row(row), col(col), dr(dr), dc(dc), score(score) {}
+    MazeFrame(size_t row, size_t col, int32_t dr, int32_t dc, size_t score,
+        std::set<std::pair<size_t, size_t>> history)
+        : row(row), col(col), dr(dr), dc(dc), score(score), history(history) {}
     ~MazeFrame() = default;
     inline bool operator>(const MazeFrame &rhs) const {
         return score > rhs.score;
@@ -30,6 +38,8 @@ struct MazeFrame {
     }
     std::vector<MazeFrame> stepToBranch(const std::vector<std::string> &,
         std::set<std::tuple<size_t, size_t, int32_t, int32_t>> &);
+    std::vector<MazeFrame> branchJunction(const std::vector<std::string> &,
+        std::map<std::pair<size_t, size_t>, size_t> &);
 };
 
 class Day16 : public Solution {
