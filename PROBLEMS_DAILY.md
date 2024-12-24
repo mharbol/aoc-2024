@@ -102,3 +102,8 @@ For part 2 I had to break the logic into can push and doing the push to avoid ha
 The horizontal movement was pretty easy, but the vertical movement took some time before I was able to trust the recursion pushing the boxes vertically.
 Effectively I travel to the end of the stack and pull each box to it's spot from the top (or bottom, depending on the direction).
 Hopefully I close out these problems before January is too far gone.
+
+## [Day 16](https://adventofcode.com/2024/day/16)
+[Today](src/solution/Day16.cpp) is the new one on the top of the list to speed up.
+For whatever reason, I could not get a fast solution going to find all the tiles in all the best paths.
+At long last, I made a good enough solution that found the part 2 solution correctly... but I don't like it.
