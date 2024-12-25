@@ -19,6 +19,7 @@ add_executable(
     aoc_test
     test_argparse.cpp
     test_vennspan.cpp
+    test_ElfComputer.cpp
     test_days.cpp
     solutiontest.cpp
 )

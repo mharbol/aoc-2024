@@ -107,3 +107,16 @@ Hopefully I close out these problems before January is too far gone.
 [Today](src/solution/Day16.cpp) is the new one on the top of the list to speed up.
 For whatever reason, I could not get a fast solution going to find all the tiles in all the best paths.
 At long last, I made a good enough solution that found the part 2 solution correctly... but I don't like it.
+
+## [Day 17](https://adventofcode.com/2024/day/17)
+[Today](src/solution/Day17.cpp) ended up becoming a week to figure out;
+I am happy to have still not needed to look up any hints along the way even if that means it takes a lot longer to complete these.
+In doing part 1 I didn't know what was going wrong with my program and introduced a lot of [new tests](test/test_ElfComputer.cpp)
+before realizing I had two `bxc` calls in my program switch statement.
+Part 2 took almost a week to figure out, but I had a blast sleuthing out the result.
+The trailing `5,5,3,0` (for my input at least) prints the B register and returns to start if A is not zero.
+Some other logic divides A by 8 at each iteration while the rest of the logic manipulates the B and C registers.
+Looking over the structure of the program and how the values were output, I determined I could build up a solution
+back to front by multiplying an initial value by 8, and adding up to 7 to smoke out the next output value.
+The tricky setback was that a desired value was not guaranteed to be in that set of 8 exactly once which means some lead to dead ends.
+I resolved that with a maze traversal approach and it worked on the first try (albeit, first try after a week of struggling).
