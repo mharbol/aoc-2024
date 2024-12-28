@@ -120,3 +120,10 @@ Looking over the structure of the program and how the values were output, I dete
 back to front by multiplying an initial value by 8, and adding up to 7 to smoke out the next output value.
 The tricky setback was that a desired value was not guaranteed to be in that set of 8 exactly once which means some lead to dead ends.
 I resolved that with a maze traversal approach and it worked on the first try (albeit, first try after a week of struggling).
+
+## [Day 18](https://adventofcode.com/2024/day/18)
+[Today](src/solution/Day18.cpp) was the first time I ever wrote an A* by name.
+Once I got myself comfortable with the heuristic in the priority queue, it was a pretty easy implementation to find the shortest path.
+Flood filling would have probably also been fast enough.
+For part 2, I originally brute forced my way to the blocking byte but went back with a binary search so as to not make today many times slower.
+Very good and relaxing day as opposed to the previous one.
