@@ -125,5 +125,13 @@ I resolved that with a maze traversal approach and it worked on the first try (a
 [Today](src/solution/Day18.cpp) was the first time I ever wrote an A* by name.
 Once I got myself comfortable with the heuristic in the priority queue, it was a pretty easy implementation to find the shortest path.
 Flood filling would have probably also been fast enough.
-For part 2, I originally brute forced my way to the blocking byte but went back with a binary search so as to not make today many times slower.
+For part 2, I originally brute forced my way to the blocking byte but went back with a binary search so as to not make today many times slower than it could be.
 Very good and relaxing day as opposed to the previous one.
+
+## [Day 19](https://adventofcode.com/2024/day/19)
+The first way I solved [today](src/solution/Day19.cpp)'s puzzle was actually by building a regex with a quick Python script
+and finding all the matches in [regex101](https://regex101.com/).
+In homage to that, I made and kept the `regexPart1()` solution. It is effective and easy but also slow.
+I ended up making a substring pattern checker which would call itself on the next chunk for part 1.
+In part 2, I already had a rep in with memoization from [Day 11](src/solution/Day11.cpp) so it felt pretty natural to do it again to find all the constructions.
+I am always amazed with how effective that approach is.
