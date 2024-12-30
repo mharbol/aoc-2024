@@ -135,3 +135,11 @@ In homage to that, I made and kept the `regexPart1()` solution. It is effective 
 I ended up making a substring pattern checker which would call itself on the next chunk for part 1.
 In part 2, I already had a rep in with memoization from [Day 11](src/solution/Day11.cpp) so it felt pretty natural to do it again to find all the constructions.
 I am always amazed with how effective that approach is.
+
+## [Day 20](https://adventofcode.com/2024/day/20)
+[Today](src/solution/Day20.cpp) went through a few iterations.
+While looking over the problem and coming up with a good way to only check anti-collisions along the travelled path, I realized I could also check if a point 2 moves away was also on the original path.
+Keeping the distance with a map I could see if that point was within the cheating threshold.
+With part 2, anti-collision could cover more than one wall, so I decided to use the index in a vector tracking the path as the distance and checked all the points past the threshold.
+I started to consolidate the logic in `Day20::countReductions()` but ended up leaving it in to reason through later if I ever go back to it.
+I confirmed this new approach worked in general by replacing my part 1 solution with the new implementation.
