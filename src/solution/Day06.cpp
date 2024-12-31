@@ -59,7 +59,7 @@ std::set<std::pair<size_t, size_t>> Day06::walkAndRecord(
             } else {
                 guard_row += y;
                 guard_col += x;
-                ret.insert(std::make_pair(guard_row, guard_col));
+                ret.emplace(guard_row, guard_col);
             }
         }
     } catch (const std::out_of_range &) {
