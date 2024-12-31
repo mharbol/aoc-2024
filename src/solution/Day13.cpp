@@ -66,7 +66,7 @@ std::vector<std::tuple<Button, Button, Button>> Day13::parse(
         comma_pos = iter->find(',');
         prize.x = std::stoul(iter->substr(9, comma_pos - 9));
         prize.y = std::stoul(iter->substr(comma_pos + 4, iter->size() - comma_pos - 4));
-        ret.push_back(std::make_tuple(a, b, prize));
+        ret.emplace_back(a, b, prize);
     }
 
     return ret;
