@@ -108,50 +108,50 @@ size_t Day12::checkSides(const int32_t row, const int32_t col, const char id,
     std::tuple<int32_t, int32_t, Direction> tup{};
 
     // check down row
-    tup = std::make_tuple(row, col, DOWN);
+    tup = {row, col, DOWN};
     if (!visited_edges.contains(tup) && isSide(row, col, id, DOWN, lines)) {
         ++tot;
         for (int32_t c = col; isSide(row, c, id, DOWN, lines); --c) {
-            visited_edges.insert(std::make_tuple(row, c, DOWN));
+            visited_edges.insert({row, c, DOWN});
         }
         for (int32_t c = col + 1; isSide(row, c, id, DOWN, lines); ++c) {
-            visited_edges.insert(std::make_tuple(row, c, DOWN));
+            visited_edges.emplace(row, c, DOWN);
         }
     }
 
     // check up row
-    tup = std::make_tuple(row, col, UP);
+    tup = {row, col, UP};
     if (!visited_edges.contains(tup) && isSide(row, col, id, UP, lines)) {
         ++tot;
         for (int32_t c = col; isSide(row, c, id, UP, lines); --c) {
-            visited_edges.insert(std::make_tuple(row, c, UP));
+            visited_edges.insert({row, c, UP});
         }
         for (int32_t c = col + 1; isSide(row, c, id, UP, lines); ++c) {
-            visited_edges.insert(std::make_tuple(row, c, UP));
+            visited_edges.insert({row, c, UP});
         }
     }
 
     // check left row
-    tup = std::make_tuple(row, col, LEFT);
+    tup = {row, col, LEFT};
     if (!visited_edges.contains(tup) && isSide(row, col, id, LEFT, lines)) {
         ++tot;
         for (int32_t r = row; isSide(r, col, id, LEFT, lines); --r) {
-            visited_edges.insert(std::make_tuple(r, col, LEFT));
+            visited_edges.insert({r, col, LEFT});
         }
         for (int32_t r = row + 1; isSide(r, col, id, LEFT, lines); ++r) {
-            visited_edges.insert(std::make_tuple(r, col, LEFT));
+            visited_edges.insert({r, col, LEFT});
         }
     }
 
     // check left row
-    tup = std::make_tuple(row, col, RIGHT);
+    tup = {row, col, RIGHT};
     if (!visited_edges.contains(tup) && isSide(row, col, id, RIGHT, lines)) {
         ++tot;
         for (int32_t r = row; isSide(r, col, id, RIGHT, lines); --r) {
-            visited_edges.insert(std::make_tuple(r, col, RIGHT));
+            visited_edges.insert({r, col, RIGHT});
         }
         for (int32_t r = row + 1; isSide(r, col, id, RIGHT, lines); ++r) {
-            visited_edges.insert(std::make_tuple(r, col, RIGHT));
+            visited_edges.insert({r, col, RIGHT});
         }
     }
 
