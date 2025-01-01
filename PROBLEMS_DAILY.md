@@ -143,3 +143,11 @@ Keeping the distance with a map I could see if that point was within the cheatin
 With part 2, anti-collision could cover more than one wall, so I decided to use the index in a vector tracking the path as the distance and checked all the points past the threshold.
 I started to consolidate the logic in `Day20::countReductions()` but ended up leaving it in to reason through later if I ever go back to it.
 I confirmed this new approach worked in general by replacing my part 1 solution with the new implementation.
+
+## [Day 21](https://adventofcode.com/2024/day/21)
+Taking my time paid off for [today](src/solution/Day21.cpp).
+I took a somewhat complicated approach to get the right patterns and guessed lucky that part 2 was going to be part 1 with more arrowpads.
+The key, for me, was realizing that any button press at one level means a chain of `A` button presses all the way down the line before.
+This means that the traversal for any sequence starts and ends at the `A` button, therefore the problem can be broken down to the lengths of ideal traversals for subsequences at the current "depth" (number of keypads away from the narrator).
+Memoization saves the day again and makes a super fast solution.
+
