@@ -151,3 +151,9 @@ The key, for me, was realizing that any button press at one level means a chain 
 This means that the traversal for any sequence starts and ends at the `A` button, therefore the problem can be broken down to the lengths of ideal traversals for subsequences at the current "depth" (number of keypads away from the narrator).
 Memoization saves the day again and makes a super fast solution.
 
+## [Day 22](https://adventofcode.com/2024/day/22)
+Normally, I would be upset at slower runtime but [today](src/solution/Day21.cpp) was just a get-it-done-and-move-on kind of day.
+For part 1 I followed the directions exactly and got a correct answer.
+In part 2, I kept track of all the combo values at all the previous four differences and just returned the max after going through all the secret numbers.
+There are other problems to speed up (if I get to it) and only 3 days left.
+
