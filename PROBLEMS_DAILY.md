@@ -152,8 +152,15 @@ This means that the traversal for any sequence starts and ends at the `A` button
 Memoization saves the day again and makes a super fast solution.
 
 ## [Day 22](https://adventofcode.com/2024/day/22)
-Normally, I would be upset at slower runtime but [today](src/solution/Day21.cpp) was just a get-it-done-and-move-on kind of day.
+Normally, I would be upset at slower runtime but [today](src/solution/Day22.cpp) was just a get-it-done-and-move-on kind of day.
 For part 1 I followed the directions exactly and got a correct answer.
 In part 2, I kept track of all the combo values at all the previous four differences and just returned the max after going through all the secret numbers.
 There are other problems to speed up (if I get to it) and only 3 days left.
+
+## [Day 23](https://adventofcode.com/2024/day/23)
+[Today](src/solution/Day23.cpp)'s problem brought some serious math and graph theory to the table.
+In part 1 I decided to not get super fancy and just found cycles of three by seeing if any pairs of neighbors for some starting node were also neighbors.
+With part 2 I had to look up and implement [Bron–Kerbosch](https://en.wikipedia.org/wiki/Bron%E2%80%93Kerbosch_algorithm)
+to find the largest complete subgraph of the network.
+Great day!
 

@@ -3,6 +3,10 @@
 #define __AOC_DAY_23_H__
 
 #include "Solution.h"
+#include <map>
+#include <set>
+#include <string>
+#include <vector>
 
 namespace aoc {
 class Day23 : public Solution {
@@ -11,6 +15,9 @@ public:
     std::string part2(const std::vector<std::string> &lines) override;
 
 private:
+    void bronKerbosch(std::set<std::string> &R, std::set<std::string> &P,
+        std::set<std::string> &X, const std::map<std::string, std::set<std::string>> &graph,
+        std::set<std::string> &ret);
 };
 } // namespace aoc
 #endif
