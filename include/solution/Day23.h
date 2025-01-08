@@ -5,8 +5,6 @@
 #include "Solution.h"
 #include <map>
 #include <set>
-#include <string>
-#include <vector>
 
 namespace aoc {
 class Day23 : public Solution {
