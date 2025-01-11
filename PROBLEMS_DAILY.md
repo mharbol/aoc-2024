@@ -162,5 +162,6 @@ There are other problems to speed up (if I get to it) and only 3 days left.
 In part 1 I decided to not get super fancy and just found cycles of three by seeing if any pairs of neighbors for some starting node were also neighbors.
 With part 2 I had to look up and implement [Bron–Kerbosch](https://en.wikipedia.org/wiki/Bron%E2%80%93Kerbosch_algorithm)
 to find the largest complete subgraph of the network.
+On a go-back, I sped up the solution by implementing Bron-Kerbosch with a pivot node and using `std::unordered_set` where I could.
 Great day!
 
