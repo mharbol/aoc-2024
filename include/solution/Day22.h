@@ -3,8 +3,7 @@
 #define __AOC_DAY_22_H__
 
 #include "Solution.h"
-#include <map>
-#include <tuple>
+#include <unordered_map>
 
 namespace aoc {
 class Day22 : public Solution {
@@ -14,11 +13,9 @@ public:
 
 private:
     size_t calcNewSecret(const size_t seed);
-    void mostBananas(const size_t seed,
-        std::map<std::tuple<int32_t, int32_t, int32_t, int32_t>, size_t> &seq_payoff,
+    void mostBananas(const size_t seed, std::unordered_map<uint64_t, size_t> &seq_payoff,
         size_t &curr_max);
-    void shiftTupleSecret(size_t &secret, int32_t &prev_price,
-        std::tuple<int32_t, int32_t, int32_t, int32_t> &tup);
+    void shiftSecret(size_t &secret, int32_t &prev_price, uint64_t &tup);
 };
 } // namespace aoc
 #endif

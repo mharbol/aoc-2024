@@ -1,6 +1,6 @@
 
 #include "solution/Day22.h"
-#include <set>
+#include <unordered_set>
 
 namespace aoc {
 
@@ -17,7 +17,7 @@ std::string Day22::part1(const std::vector<std::string> &lines) {
 }
 
 std::string Day22::part2(const std::vector<std::string> &lines) {
-    std::map<std::tuple<int32_t, int32_t, int32_t, int32_t>, size_t> map{};
+    std::unordered_map<uint64_t, size_t> map{};
     size_t most{};
     for (const auto &line : lines) {
         mostBananas(std::stoul(line), map, most);
@@ -31,19 +31,18 @@ size_t Day22::calcNewSecret(size_t seed) {
     return ((seed * 2048) ^ seed) % 16777216;
 }
 
-void Day22::mostBananas(size_t secret,
-    std::map<std::tuple<int32_t, int32_t, int32_t, int32_t>, size_t> &seq_payoff,
+void Day22::mostBananas(size_t secret, std::unordered_map<uint64_t, size_t> &seq_payoff,
     size_t &curr_max) {
 
-    std::tuple<int32_t, int32_t, int32_t, int32_t> seq_key{};
-    std::set<std::tuple<int32_t, int32_t, int32_t, int32_t>> visited{};
+    uint64_t seq_key{};
+    std::unordered_set<uint64_t> visited{};
     int32_t price{};
 
-    shiftTupleSecret(secret, price, seq_key);
-    shiftTupleSecret(secret, price, seq_key);
-    shiftTupleSecret(secret, price, seq_key);
+    shiftSecret(secret, price, seq_key);
+    shiftSecret(secret, price, seq_key);
+    shiftSecret(secret, price, seq_key);
     for (size_t i = 3; i < 2000; ++i) {
-        shiftTupleSecret(secret, price, seq_key);
+        shiftSecret(secret, price, seq_key);
         if (!visited.contains(seq_key)) {
             visited.insert(seq_key);
             if (size_t val = seq_payoff[seq_key] += price; val > curr_max) {
@@ -53,15 +52,11 @@ void Day22::mostBananas(size_t secret,
     }
 }
 
-void Day22::shiftTupleSecret(size_t &secret, int32_t &prev_price,
-    std::tuple<int32_t, int32_t, int32_t, int32_t> &tup) {
+void Day22::shiftSecret(size_t &secret, int32_t &prev_price, uint64_t &tup) {
 
     int32_t curr_price = secret % 10;
     secret = calcNewSecret(secret);
-    std::get<0>(tup) = std::get<1>(tup);
-    std::get<1>(tup) = std::get<2>(tup);
-    std::get<2>(tup) = std::get<3>(tup);
-    std::get<3>(tup) = curr_price - prev_price;
+    tup = ((tup << 5) & 0xfffff) + curr_price - prev_price + 9;
 
     prev_price = curr_price;
 }
