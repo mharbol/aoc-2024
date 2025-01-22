@@ -10,4 +10,7 @@ Zig will have to wait until next year unless I think of something else.
 
 ## Problems and Rationale
 Rather than pollute the README with my diary, I am placing the days' thought processes [here](PROBLEMS_DAILY.md).
-Hopefully it gives good enough insight for anyone interested.
+Hopefully, it gives good enough insight for anyone interested.
+
+## And done!
+![yay](https://github.com/user-attachments/assets/fe03551f-7ece-4024-ac69-8256ad9e44a2)
