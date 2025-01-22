@@ -165,3 +165,9 @@ to find the largest complete subgraph of the network.
 On a go-back, I sped up the solution by implementing Bron-Kerbosch with a pivot node and using `std::unordered_set` where I could.
 Great day!
 
+## [Day 24](https://adventofcode.com/2024/day/24)
+[Today](src/solution/Day24.cpp) went on for a very long time in part 2.
+I decided to verify each adder and keep going until I came across a failure in the logic.
+Once I found a failure, I looked at the inputs to determine the output which needed to be swapped.
+Of course, hard-coding these swaps is not a very general solution so this is the first problem I will have to go back to and actually do algorithmically.
+It was nice to get it finally working though...
