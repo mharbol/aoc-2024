@@ -27,7 +27,8 @@ std::pair<std::vector<Day25::LockKey>, std::vector<Day25::LockKey>> Day25::parse
 
     std::vector<LockKey> locks{}, keys{};
 
-    for (auto iter = lines.begin(); iter != lines.end();) {
+    auto iter = lines.begin();
+    for (;;) {
         bool is_lock = "#####" == *iter++;
         LockKey lock_key{};
         while (!iter->empty() && iter != lines.end()) {
@@ -43,9 +44,10 @@ std::pair<std::vector<Day25::LockKey>, std::vector<Day25::LockKey>> Day25::parse
         } else {
             keys.push_back(lock_key);
         }
-        if (iter != lines.end()) {
-            ++iter;
+        if (iter == lines.end()) {
+            break;
         }
+        ++iter;
     }
 
     return {locks, keys};
