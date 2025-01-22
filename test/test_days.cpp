@@ -74,3 +74,6 @@ TEST(TestDay, Day23) {
 TEST(TestDay, Day24) {
     aoc::testSolution(24, "48063513640678", "hqh,mmk,pvb,qdq,vkq,z11,z24,z38");
 }
+TEST(TestDay, Day25) {
+    aoc::testSolution(25, "2900", "");
+}

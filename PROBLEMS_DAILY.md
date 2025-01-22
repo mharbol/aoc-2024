@@ -171,3 +171,7 @@ I decided to verify each adder and keep going until I came across a failure in t
 Once I found a failure, I looked at the inputs to determine the output which needed to be swapped.
 Of course, hard-coding these swaps is not a very general solution so this is the first problem I will have to go back to and actually do algorithmically.
 It was nice to get it finally working though...
+
+## [Day 25](https://adventofcode.com/2024/day/25)
+[Finally done](src/solution/Day25.cpp) with 2024!
+I wrote a fast and easy part 1 and was surprised to see no part 2 (maybe that is the norm).
