@@ -2,6 +2,7 @@
 #include "solution/Day24.h"
 #include <iomanip>
 #include <iostream>
+#include <sstream>
 
 namespace aoc {
 
