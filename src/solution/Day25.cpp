@@ -11,7 +11,7 @@ std::string Day25::part1(const std::vector<std::string> &lines) {
     size_t count{};
     for (const auto &lock : locks) {
         for (const auto &key : keys) {
-            count += lock.fits(key);
+            count += fits(lock, key);
         }
     }
 
@@ -22,21 +22,21 @@ std::string Day25::part2(const std::vector<std::string> &) {
     return "";
 }
 
-std::pair<std::vector<Day25::LockKey>, std::vector<Day25::LockKey>> Day25::parse(
+std::pair<std::vector<lockkey_t>, std::vector<lockkey_t>> Day25::parse(
     const std::vector<std::string> &lines) {
 
-    std::vector<LockKey> locks{}, keys{};
+    std::vector<lockkey_t> locks{}, keys{};
 
     auto iter = lines.begin();
     for (;;) {
         bool is_lock = "#####" == *iter++;
-        LockKey lock_key{};
+        lockkey_t lock_key{};
         while (!iter->empty() && iter != lines.end()) {
-            lock_key.s0 += iter->at(0) == '#';
-            lock_key.s1 += iter->at(1) == '#';
-            lock_key.s2 += iter->at(2) == '#';
-            lock_key.s3 += iter->at(3) == '#';
-            lock_key.s4 += iter->at(4) == '#';
+            std::get<0>(lock_key) += iter->at(0) == '#';
+            std::get<1>(lock_key) += iter->at(1) == '#';
+            std::get<2>(lock_key) += iter->at(2) == '#';
+            std::get<3>(lock_key) += iter->at(3) == '#';
+            std::get<4>(lock_key) += iter->at(4) == '#';
             ++iter;
         }
         if (is_lock) {
@@ -53,8 +53,11 @@ std::pair<std::vector<Day25::LockKey>, std::vector<Day25::LockKey>> Day25::parse
     return {locks, keys};
 }
 
-bool Day25::LockKey::fits(const LockKey &other) const {
-    return (s0 + other.s0 < 7) && (s1 + other.s1 < 7) && (s2 + other.s2 < 7) &&
-           (s3 + other.s3 < 7) && (s4 + other.s4 < 7);
+bool Day25::fits(const lockkey_t &lock, const lockkey_t &key) const {
+    return (std::get<0>(lock) + std::get<0>(key) < 7) &&
+           (std::get<1>(lock) + std::get<1>(key) < 7) &&
+           (std::get<2>(lock) + std::get<2>(key) < 7) &&
+           (std::get<3>(lock) + std::get<3>(key) < 7) &&
+           (std::get<4>(lock) + std::get<4>(key) < 7);
 }
 } // namespace aoc
