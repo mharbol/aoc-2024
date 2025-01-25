@@ -1,7 +1,6 @@
 
 #include "solution/Day16.h"
-#include <cstddef>
-#include <cstdint>
+#include <queue>
 #include <set>
 #include <string>
 #include <tuple>
@@ -12,45 +11,42 @@ namespace aoc {
 
 std::string Day16::part1(const std::vector<std::string> &lines) {
 
+    std::priority_queue<MazeFrame, std::vector<MazeFrame>, std::greater<MazeFrame>> pq{};
     const auto [end_row, end_col, start] = getStartEnd(lines);
     std::set<std::tuple<size_t, size_t, int32_t, int32_t>> visited{};
     pq.push(start);
 
     while (pq.top().row != end_row || pq.top().col != end_col) {
-        MazeFrame frame = pq.top();
+        MazeFrame frame = std::move(pq.top());
         pq.pop();
-        auto branches = frame.stepToBranch(lines, visited);
-        for (const auto &branch : branches) {
-            pq.push(branch);
+        for (auto &branch : frame.stepToBranch(lines, visited)) {
+            pq.push(std::move(branch));
         }
     }
     return std::to_string(pq.top().score);
 }
 
 std::string Day16::part2(const std::vector<std::string> &lines) {
-    return "496";
-    // TODO make this not slow
+    // return "496";
 
+    std::priority_queue<MazeFrame, std::vector<MazeFrame>, std::greater<MazeFrame>> pq{};
     const auto [end_row, end_col, start] = getStartEnd(lines);
     const size_t target = std::stoul(part1(lines));
-    while (!pq.empty()) {
-        pq.pop();
-    }
     pq.push(start);
     std::map<std::pair<size_t, size_t>, size_t> visited{};
     std::set<std::pair<size_t, size_t>> tiles{};
 
     while (pq.top().score <= target) {
-        MazeFrame frame = pq.top();
+        MazeFrame frame = std::move(pq.top());
         pq.pop();
         if (end_row == frame.row && end_col == frame.col) {
-            for (const auto &tile : frame.history) {
-                tiles.insert(tile);
+            for (auto &tile : frame.history) {
+                tiles.insert(std::move(tile));
             }
         } else {
-            auto branches = frame.branchJunction(lines, visited);
-            for (const auto &branch : branches) {
-                pq.push(branch);
+            auto branches = frame.branchJunction(lines, visited, target);
+            for (auto &branch : branches) {
+                pq.push(std::move(branch));
             }
         }
     }
@@ -116,18 +112,18 @@ std::vector<MazeFrame> MazeFrame::stepToBranch(const std::vector<std::string> &l
 }
 
 std::vector<MazeFrame> MazeFrame::branchJunction(const std::vector<std::string> &lines,
-    std::map<std::pair<size_t, size_t>, size_t> &visited_score) {
+    std::map<std::pair<size_t, size_t>, size_t> &visited_score, const size_t target) {
 
     std::vector<MazeFrame> ret{};
     const auto here = std::make_pair(row, col);
     if (visited_score.contains(here)) {
         if (visited_score.at(here) < score) {
-            return ret;
+            return {};
         }
     }
     visited_score[here] = score;
 
-    while ('#' != lines.at(row).at(col)) {
+    while ('#' != lines.at(row).at(col) && score <= target) {
         history.emplace(row, col);
         if ('E' == lines.at(row).at(col)) {
             ret.emplace_back(row, col, 0, 0, score, history);

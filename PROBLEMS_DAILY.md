@@ -107,6 +107,8 @@ Hopefully I close out these problems before January is too far gone.
 [Today](src/solution/Day16.cpp) is the new one on the top of the list to speed up.
 For whatever reason, I could not get a fast solution going to find all the tiles in all the best paths.
 At long last, I made a good enough solution that found the part 2 solution correctly... but I don't like it.
+Going back, I made it a lot faster with some checks and making the structs work better with xvalues.
+Still not as fast as I want but it's a step in the right direction.
 
 ## [Day 17](https://adventofcode.com/2024/day/17)
 [Today](src/solution/Day17.cpp) ended up becoming a week to figure out;

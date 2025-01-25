@@ -3,11 +3,7 @@
 #define __AOC_DAY_16_H__
 
 #include "Solution.h"
-#include <cstddef>
-#include <cstdint>
-#include <functional>
 #include <map>
-#include <queue>
 #include <set>
 #include <string>
 #include <tuple>
@@ -29,17 +25,18 @@ struct MazeFrame {
     MazeFrame(size_t row, size_t col, int32_t dr, int32_t dc, size_t score,
         std::set<std::pair<size_t, size_t>> history)
         : row(row), col(col), dr(dr), dc(dc), score(score), history(history) {}
-    ~MazeFrame() = default;
+
     inline bool operator>(const MazeFrame &rhs) const {
         return score > rhs.score;
     }
     inline bool operator<(const MazeFrame &rhs) const {
         return score < rhs.score;
     }
+
     std::vector<MazeFrame> stepToBranch(const std::vector<std::string> &,
         std::set<std::tuple<size_t, size_t, int32_t, int32_t>> &);
     std::vector<MazeFrame> branchJunction(const std::vector<std::string> &,
-        std::map<std::pair<size_t, size_t>, size_t> &);
+        std::map<std::pair<size_t, size_t>, size_t> &, const size_t);
 };
 
 class Day16 : public Solution {
@@ -48,7 +45,6 @@ public:
     std::string part2(const std::vector<std::string> &lines) override;
 
 private:
-    std::priority_queue<MazeFrame, std::vector<MazeFrame>, std::greater<MazeFrame>> pq{};
     std::tuple<size_t, size_t, MazeFrame> getStartEnd(const std::vector<std::string> &lines);
 };
 } // namespace aoc
