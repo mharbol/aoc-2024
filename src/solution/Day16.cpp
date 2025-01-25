@@ -17,7 +17,7 @@ std::string Day16::part1(const std::vector<std::string> &lines) {
     pq.push(start);
 
     while (pq.top().row != end_row || pq.top().col != end_col) {
-        MazeFrame frame = std::move(pq.top());
+        MazeFrame frame = pq.top();
         pq.pop();
         for (auto &branch : frame.stepToBranch(lines, visited)) {
             pq.push(std::move(branch));
@@ -27,7 +27,6 @@ std::string Day16::part1(const std::vector<std::string> &lines) {
 }
 
 std::string Day16::part2(const std::vector<std::string> &lines) {
-    // return "496";
 
     std::priority_queue<MazeFrame, std::vector<MazeFrame>, std::greater<MazeFrame>> pq{};
     const auto [end_row, end_col, start] = getStartEnd(lines);
@@ -37,7 +36,7 @@ std::string Day16::part2(const std::vector<std::string> &lines) {
     std::set<std::pair<size_t, size_t>> tiles{};
 
     while (pq.top().score <= target) {
-        MazeFrame frame = std::move(pq.top());
+        MazeFrame frame = pq.top();
         pq.pop();
         if (end_row == frame.row && end_col == frame.col) {
             for (auto &tile : frame.history) {
