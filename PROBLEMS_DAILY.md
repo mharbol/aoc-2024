@@ -171,8 +171,9 @@ Great day!
 [Today](src/solution/Day24.cpp) went on for a very long time in part 2.
 I decided to verify each adder and keep going until I came across a failure in the logic.
 Once I found a failure, I looked at the inputs to determine the output which needed to be swapped.
-Of course, hard-coding these swaps is not a very general solution so this is the first problem I will have to go back to and actually do algorithmically.
-It was nice to get it finally working though...
+Of course, hard-coding these swaps is not a very general solution so I went back to do it algorithmically.
+This approach still might just be good enough for me and maybe a handful of others that match my two types of swaps,
+but I feel good enough to leave it as is with prints and comments.
 
 ## [Day 25](https://adventofcode.com/2024/day/25)
 [Finally done](src/solution/Day25.cpp) with 2024!

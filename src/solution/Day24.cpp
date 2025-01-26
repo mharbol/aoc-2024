@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <iostream>
 #include <sstream>
+#include <utility>
 
 namespace aoc {
 
@@ -48,13 +49,7 @@ std::string Day24::part2(const std::vector<std::string> &lines) {
 
     const size_t max_val = parseGateMaps(lines, gate_maps);
 
-    // TODO find these swaps algorithmically
-    swapOutputs("z11", "vkq", gate_maps);
-    swapOutputs("z24", "mmk", gate_maps);
-    swapOutputs("qdq", "pvb", gate_maps);
-    swapOutputs("hqh", "z38", gate_maps);
-
-    std::set<std::string> swaps{"z11", "vkq", "z24", "mmk", "qdq", "pvb", "hqh", "z38"};
+    std::set<std::string> swaps{"qdq", "pvb"};
 
     std::cout << max_val << std::endl;
     std::string sum{}, carry_in{}, carry_out{};
@@ -67,8 +62,34 @@ std::string Day24::part2(const std::vector<std::string> &lines) {
             std::cout << "SUCCESS\n";
             carry_in = std::move(carry_out);
             carry_out.clear();
+        } else if (1 == outputs.size()) {
+            std::stringstream z{};
+            z << "z" << std::setw(2) << std::setfill('0') << num;
+            const std::string z_out = *outputs.cbegin();
+            std::cout << "Swapping " << z_out << " and " << z.str() << ". Rerunning\n";
+            swapOutputs(z.str(), z_out, gate_maps);
+            swaps.insert(z.str());
+            swaps.insert(z_out);
+            --num;
+        } else if (2 == outputs.size()) {
+            // I doubt this is the norm or just for mine, but the XOR and AND outputs of my
+            // adder were the only other ones that were swapped besides z outputs.
+            // So this is an easy case to handle at the cost of (probably) not being general to
+            // everyone. Leaving in all the print statements in.
+            auto iter = outputs.begin();
+            const std::string g0 = *iter;
+            const std::string g1 = *++iter;
+            std::cout << "Swapping " << g0 << " and " << g1 << ". Rerunning\n";
+            swapOutputs(g0, g1, gate_maps);
+            swaps.insert(g0);
+            swaps.insert(g1);
+            --num;
         } else {
             std::cout << "FAIL\n";
+            for (const auto &gate : outputs) {
+                std::cout << gate << " ";
+            }
+            std::cout << '\n';
             break;
         }
     }
@@ -168,7 +189,6 @@ bool Day24::verifyAdder(const size_t num, const std::string &c_in, std::string &
 
     std::stringstream x{}, y{}, z{};
     outputs.clear();
-    outputs.insert(c_in);
 
     x << "x" << std::setw(2) << std::setfill('0') << num;
     y << "y" << std::setw(2) << std::setfill('0') << num;
@@ -179,6 +199,7 @@ bool Day24::verifyAdder(const size_t num, const std::string &c_in, std::string &
     auto ret = traceForwardHalfAdder(x.str(), y.str(), xy_sum, xy_carry, gates);
     std::cout << x.str() << " " << y.str() << " -> ";
     if (ret) {
+        // should never happen, there will always be an xXX and yXX XOR/AND gate
         std::cout << num << " - Failed first half adder" << std::endl;
         return false;
     }
@@ -191,7 +212,7 @@ bool Day24::verifyAdder(const size_t num, const std::string &c_in, std::string &
     if (ret) {
         std::cout << num << " - Failed second half adder ";
         switch (*ret) {
-            case OR: std::cout << "OR\n"; break;
+            case OR: std::cout << "OR (both inputs don't exist)\n"; break;
             case AND: std::cout << "AND\n"; break;
             case XOR: std::cout << "XOR\n"; break;
         }

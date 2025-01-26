@@ -3,11 +3,9 @@
 #define __AOC_DAY_24_H__
 
 #include "Solution.h"
-#include <cstddef>
 #include <map>
 #include <optional>
 #include <set>
-#include <string>
 #include <utility>
 
 namespace aoc {
