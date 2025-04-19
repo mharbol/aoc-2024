@@ -1,55 +1,45 @@
 
 #include "solution/Day16.h"
-#include <queue>
-#include <set>
-#include <string>
-#include <tuple>
-#include <utility>
-#include <vector>
 
 namespace aoc {
 
 std::string Day16::part1(const std::vector<std::string> &lines) {
-
-    std::priority_queue<MazeFrame, std::vector<MazeFrame>, std::greater<MazeFrame>> pq{};
-    const auto [end_row, end_col, start] = getStartEnd(lines);
-    std::set<std::tuple<size_t, size_t, int32_t, int32_t>> visited{};
-    pq.push(start);
-
-    while (pq.top().row != end_row || pq.top().col != end_col) {
-        MazeFrame frame = pq.top();
-        pq.pop();
-        for (auto &branch : frame.stepToBranch(lines, visited)) {
-            pq.push(std::move(branch));
-        }
-    }
-    return std::to_string(pq.top().score);
+    return std::to_string(lowestReindeer(lines));
 }
 
 std::string Day16::part2(const std::vector<std::string> &lines) {
-
+    const size_t target = lowestReindeer(lines);
+    auto [end_row, end_col, start] = getStartEnd(lines);
+    start.frame_id = 1;
+    size_t frame_id = 1;
+    std::map<std::pair<size_t, size_t>, size_t> visited_scores{};
+    std::map<size_t, std::set<std::pair<size_t, size_t>>> frame_history{};
+    std::map<size_t, size_t> frame_parent_assoc{};
     std::priority_queue<MazeFrame, std::vector<MazeFrame>, std::greater<MazeFrame>> pq{};
-    const auto [end_row, end_col, start] = getStartEnd(lines);
-    const size_t target = std::stoul(part1(lines));
-    pq.push(start);
-    std::map<std::pair<size_t, size_t>, size_t> visited{};
-    std::set<std::pair<size_t, size_t>> tiles{};
+    std::set<std::pair<size_t, size_t>> successful_visits{};
 
+    frame_parent_assoc[frame_id] = 0;
+    successful_visits.emplace(start.row, start.col);
+
+    pq.push(start);
     while (pq.top().score <= target) {
         MazeFrame frame = pq.top();
         pq.pop();
         if (end_row == frame.row && end_col == frame.col) {
-            for (auto &tile : frame.history) {
-                tiles.insert(std::move(tile));
+            size_t id = frame.frame_id;
+            while (0 != id) {
+                for (auto &pr : frame_history[id]) {
+                    successful_visits.insert(pr);
+                }
+                id = frame_parent_assoc[id];
             }
         } else {
-            auto branches = frame.branchJunction(lines, visited, target);
-            for (auto &branch : branches) {
-                pq.push(std::move(branch));
-            }
+            frame.branchJunction(lines, visited_scores, frame_history, frame_parent_assoc, pq,
+                target, frame_id);
         }
     }
-    return std::to_string(tiles.size());
+
+    return std::to_string(successful_visits.size());
 }
 
 std::tuple<size_t, size_t, MazeFrame> Day16::getStartEnd(
@@ -68,86 +58,110 @@ std::tuple<size_t, size_t, MazeFrame> Day16::getStartEnd(
             }
         }
     }
-
     return {end_row, end_col, ret_frame};
 }
 
-std::vector<MazeFrame> MazeFrame::stepToBranch(const std::vector<std::string> &lines,
-    std::set<std::tuple<size_t, size_t, int32_t, int32_t>> &visited) {
+void MazeFrame::stepToBranch(const std::vector<std::string> &lines,
+    std::unordered_set<std::tuple<size_t, size_t, int32_t, int32_t>> &visited,
+    std::priority_queue<MazeFrame, std::vector<MazeFrame>, std::greater<MazeFrame>> &pq) {
 
-    std::vector<MazeFrame> ret{};
-    auto here = std::make_tuple(row, col, dr, dc);
+    const auto here = std::make_tuple(row, col, dr, dc);
     if (visited.contains(here)) {
-        return ret;
+        return;
     }
-    visited.insert(here);
+    visited.insert(std::move(here));
 
     while ('#' != lines.at(row).at(col)) {
         if ('E' == lines.at(row).at(col)) {
-            ret.emplace_back(row, col, 0, 0, score);
-            return ret;
+            pq.emplace(row, col, dr, dc, score);
+            return;
         }
         if (0 == dr) {
             if ('.' == lines.at(row + 1).at(col)) {
-                ret.emplace_back(row, col, 1, 0, score + 1000);
+                pq.emplace(row, col, 1, 0, score + 1000);
             }
             if ('.' == lines.at(row - 1).at(col)) {
-                ret.emplace_back(row, col, -1, 0, score + 1000);
+                pq.emplace(row, col, -1, 0, score + 1000);
             }
         } else {
             if ('.' == lines.at(row).at(col + 1)) {
-                ret.emplace_back(row, col, 0, 1, score + 1000);
+                pq.emplace(row, col, 0, 1, score + 1000);
             }
             if ('.' == lines.at(row).at(col - 1)) {
-                ret.emplace_back(row, col, 0, -1, score + 1000);
+                pq.emplace(row, col, 0, -1, score + 1000);
             }
         }
         row += dr;
         col += dc;
         ++score;
     }
-
-    return ret;
 }
 
-std::vector<MazeFrame> MazeFrame::branchJunction(const std::vector<std::string> &lines,
-    std::map<std::pair<size_t, size_t>, size_t> &visited_score, const size_t target) {
+void MazeFrame::branchJunction(const std::vector<std::string> &lines,
+    std::map<std::pair<size_t, size_t>, size_t> &visited_scores,
+    std::map<size_t, std::set<std::pair<size_t, size_t>>> &frame_history,
+    std::map<size_t, size_t> &frame_parent_assoc,
+    std::priority_queue<MazeFrame, std::vector<MazeFrame>, std::greater<MazeFrame>> &pq,
+    const size_t target, size_t &new_frame_id) {
 
-    std::vector<MazeFrame> ret{};
     const auto here = std::make_pair(row, col);
-    if (visited_score.contains(here)) {
-        if (visited_score.at(here) < score) {
-            return {};
+    if (visited_scores.contains(here)) {
+        if (visited_scores.at(here) < score) {
+            return;
         }
     }
-    visited_score[here] = score;
+    visited_scores[here] = score;
 
     while ('#' != lines.at(row).at(col) && score <= target) {
-        history.emplace(row, col);
+        frame_history[frame_id].emplace(row, col);
         if ('E' == lines.at(row).at(col)) {
-            ret.emplace_back(row, col, 0, 0, score, history);
-            return ret;
+            pq.emplace(row, col, 0, 0, score, frame_id, parent_id);
+            return;
         }
         if (0 == dr) {
             if ('.' == lines.at(row + 1).at(col)) {
-                ret.emplace_back(row + 1, col, 1, 0, score + 1001, history);
+                pq.emplace(row + 1, col, 1, 0, score + 1001, ++new_frame_id, frame_id);
+                frame_parent_assoc[new_frame_id] = frame_id;
+                frame_parent_assoc[++new_frame_id] = frame_id;
+                frame_id = new_frame_id;
             }
             if ('.' == lines.at(row - 1).at(col)) {
-                ret.emplace_back(row - 1, col, -1, 0, score + 1001, history);
+                pq.emplace(row - 1, col, -1, 0, score + 1001, ++new_frame_id, frame_id);
+                frame_parent_assoc[new_frame_id] = frame_id;
+                frame_parent_assoc[++new_frame_id] = frame_id;
+                frame_id = new_frame_id;
             }
         } else {
             if ('.' == lines.at(row).at(col + 1)) {
-                ret.emplace_back(row, col + 1, 0, 1, score + 1001, history);
+                pq.emplace(row, col + 1, 0, 1, score + 1001, ++new_frame_id, frame_id);
+                frame_parent_assoc[new_frame_id] = frame_id;
+                frame_parent_assoc[++new_frame_id] = frame_id;
+                frame_id = new_frame_id;
             }
             if ('.' == lines.at(row).at(col - 1)) {
-                ret.emplace_back(row, col - 1, 0, -1, score + 1001, history);
+                pq.emplace(row, col - 1, 0, -1, score + 1001, ++new_frame_id, frame_id);
+                frame_parent_assoc[new_frame_id] = frame_id;
+                frame_parent_assoc[++new_frame_id] = frame_id;
+                frame_id = new_frame_id;
             }
         }
         row += dr;
         col += dc;
         ++score;
     }
+}
 
-    return ret;
+size_t Day16::lowestReindeer(const std::vector<std::string> &lines) {
+    const auto [end_row, end_col, start] = getStartEnd(lines);
+    std::priority_queue<MazeFrame, std::vector<MazeFrame>, std::greater<MazeFrame>> pq{};
+    std::unordered_set<std::tuple<size_t, size_t, int32_t, int32_t>> visited{};
+
+    pq.push(start);
+    while (end_row != pq.top().row || end_col != pq.top().col) {
+        MazeFrame frame = pq.top();
+        pq.pop();
+        frame.stepToBranch(lines, visited, pq);
+    }
+    return pq.top().score;
 }
 } // namespace aoc

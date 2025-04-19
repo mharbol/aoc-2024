@@ -104,11 +104,12 @@ Effectively I travel to the end of the stack and pull each box to it's spot from
 Hopefully I close out these problems before January is too far gone.
 
 ## [Day 16](https://adventofcode.com/2024/day/16)
-[Today](src/solution/Day16.cpp) is the new one on the top of the list to speed up.
-For whatever reason, I could not get a fast solution going to find all the tiles in all the best paths.
-At long last, I made a good enough solution that found the part 2 solution correctly... but I don't like it.
-Going back, I made it a lot faster with some checks and making the structs work better with xvalues.
-Still not as fast as I want but it's a step in the right direction.
+[Today](src/solution/Day16.cpp) took a long time to get totally right.
+Part 1 was a pretty simple path-finding problem.
+For part 2, I eventually got a pretty good solution working where every uninterrupted path gets its own ID.
+Whenever it steps, the tile gets added to the ID's history.
+Whenever a position can be split, the new directions get new IDs and keep track of their parent.
+When an optimal traversal is made, the program goes down the list of parents and adds the tiles in that hierarchy to a set.
 
 ## [Day 17](https://adventofcode.com/2024/day/17)
 [Today](src/solution/Day17.cpp) ended up becoming a week to figure out;
