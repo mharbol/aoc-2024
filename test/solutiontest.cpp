@@ -5,6 +5,7 @@
 #include <gtest/gtest.h>
 #include <sstream>
 #include <vector>
+#include <iomanip>
 
 namespace aoc {
 

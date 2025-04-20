@@ -1,11 +1,9 @@
 
-set(PROJECT_GTEST_HASH 03597a01ee50ed33e9dfd640b249b4be3799d395)
-
 include(FetchContent)
 FetchContent_Declare(
     googletest
     DOWNLOAD_EXTRACT_TIMESTAMP true
-    URL https://github.com/google/googletest/archive/${PROJECT_GTEST_HASH}.zip
+    URL https://github.com/google/googletest/archive/refs/tags/v1.16.0.zip 
 )
 # For Windows: Prevent overriding the parent project's compiler/linker settings
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
