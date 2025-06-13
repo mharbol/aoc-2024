@@ -49,7 +49,7 @@ std::string Day24::part2(const std::vector<std::string> &lines) {
 
     const size_t max_val = parseGateMaps(lines, gate_maps);
 
-    std::set<std::string> swaps{"qdq", "pvb"};
+    std::set<std::string> swaps{};
 
     std::cout << max_val << std::endl;
     std::string sum{}, carry_in{}, carry_out{};
