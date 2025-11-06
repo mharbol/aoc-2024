@@ -19,9 +19,10 @@ add_executable(
     test_argparse.cpp
     test_ElfComputer.cpp
     test_days.cpp
-    solutiontest.cpp
 )
+
 target_include_directories(test_setup INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+
 target_link_libraries(
     aoc_test
     test_setup
