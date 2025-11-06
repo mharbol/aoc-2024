@@ -11,10 +11,11 @@
 #include <sstream>
 #include <string>
 
+template <size_t year>
 class DayTestYear : public ::testing::Test {
 
 private:
-    const std::string base_path = "../../resources/day";
+    const std::string base_path = "../../resources/" + std::to_string(year) + "/day";
 
 protected:
     /**
