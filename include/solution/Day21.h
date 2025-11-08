@@ -30,6 +30,9 @@ private:
 
     size_t idealTravLength(const std::string &seq, const size_t depth);
     size_t idealTravLengthSubs(const std::string &subseq, const size_t depth);
+
+    template <size_t DEPTH>
+    std::string solve(const std::vector<std::string> &lines);
 };
 } // namespace aoc
 #endif

@@ -1,33 +1,26 @@
 
 #include "solution/Day21.h"
+#include <algorithm>
 #include <string>
 #include <utility>
 namespace aoc {
 
 std::string Day21::part1(const std::vector<std::string> &lines) {
-    ideal_trav_cache.clear();
-    size_t acc{};
-    for (const auto &code : lines) {
-        size_t min_len = ~0;
-        for (const auto &trav : allNumpadTravs(code)) {
-            if (size_t len = idealTravLength(trav, 2); len < min_len) {
-                min_len = len;
-            }
-        }
-        acc += min_len * std::stoul(code.substr(0, 3));
-    }
-    return std::to_string(acc);
+    return solve<2>(lines);
 }
 
 std::string Day21::part2(const std::vector<std::string> &lines) {
+    return solve<25>(lines);
+}
+
+template <size_t DEPTH>
+inline std::string Day21::solve(const std::vector<std::string> &lines) {
     ideal_trav_cache.clear();
     size_t acc{};
     for (const auto &code : lines) {
         size_t min_len = ~0;
         for (const auto &trav : allNumpadTravs(code)) {
-            if (size_t len = idealTravLength(trav, 25); len < min_len) {
-                min_len = len;
-            }
+            min_len = std::min(min_len, idealTravLength(trav, DEPTH));
         }
         acc += min_len * std::stoul(code.substr(0, 3));
     }
@@ -145,7 +138,7 @@ std::vector<std::string> Day21::keypadPaths(const std::pair<int32_t, int32_t> &s
         const std::string vert_seq(seq + (vert < 0 ? '^' : 'v'));
         for (auto &&s :
             keypadPaths(std::make_pair(vert_step, start.second), end, nogo, vert_seq)) {
-            ret.push_back(s);
+            ret.push_back(std::move(s));
         }
     }
     if (0 != horz) {
@@ -153,7 +146,7 @@ std::vector<std::string> Day21::keypadPaths(const std::pair<int32_t, int32_t> &s
         const std::string horz_seq(seq + (horz < 0 ? '<' : '>'));
         for (auto &&s :
             keypadPaths(std::make_pair(start.first, horz_step), end, nogo, horz_seq)) {
-            ret.push_back(s);
+            ret.push_back(std::move(s));
         }
     }
     return ret;
