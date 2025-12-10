@@ -20,6 +20,9 @@ public:
 private:
     std::vector<std::tuple<Button, Button, Button>> parse(
         const std::vector<std::string> &lines);
+
+    template <const uint64_t N>
+    std::string solve(const std::vector<std::string> &lines);
 };
 } // namespace aoc
 #endif
