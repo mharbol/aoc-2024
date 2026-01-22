@@ -25,9 +25,9 @@ std::string Day03::part2(const std::vector<std::string> &lines) {
 size_t Day03::mulLine(const std::string &line) {
 
     size_t acc{};
-    const std::regex pattern("mul\\([0-9]{1,3},[0-9]{1,3}\\)");
+    static const std::regex re("mul\\([0-9]{1,3},[0-9]{1,3}\\)");
 
-    auto start = std::sregex_iterator(line.begin(), line.end(), pattern);
+    auto start = std::sregex_iterator(line.begin(), line.end(), re);
     const auto end = std::sregex_iterator();
 
     for (auto &iter = start; iter != end; ++iter) {
@@ -42,9 +42,9 @@ size_t Day03::mulLine(const std::string &line) {
 size_t Day03::mulLineDoDont(const std::string &line, bool &is_do) {
 
     size_t acc{};
-    const std::regex pattern("(mul\\([0-9]{1,3},[0-9]{1,3}\\))|(do\\(\\))|(don't\\(\\))");
+    static const std::regex re("(mul\\([0-9]{1,3},[0-9]{1,3}\\))|(do\\(\\))|(don't\\(\\))");
 
-    auto start = std::sregex_iterator(line.begin(), line.end(), pattern);
+    auto start = std::sregex_iterator(line.begin(), line.end(), re);
     const auto end = std::sregex_iterator();
 
     for (auto &iter = start; iter != end; ++iter) {
