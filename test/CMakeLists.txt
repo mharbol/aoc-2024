@@ -3,12 +3,15 @@ include(FetchContent)
 FetchContent_Declare(
     googletest
     DOWNLOAD_EXTRACT_TIMESTAMP true
-    URL https://github.com/google/googletest/archive/refs/tags/v1.16.0.zip 
+    URL https://github.com/google/googletest/archive/refs/tags/v1.17.0.zip 
 )
-# For Windows: Prevent overriding the parent project's compiler/linker settings
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-set(BUILD_GMOCK OFF)
-FetchContent_MakeAvailable(googletest)
+block()
+    set(CMAKE_CXX_STANDARD 17) # setting to c++17 for gtest macos builds
+    # For Windows: Prevent overriding the parent project's compiler/linker settings
+    set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+    set(BUILD_GMOCK OFF)
+    FetchContent_MakeAvailable(googletest)
+endblock()
 
 add_library(test_setup INTERFACE)
 
