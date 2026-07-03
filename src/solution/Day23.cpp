@@ -1,6 +1,7 @@
 
 #include "solution/Day23.h"
 #include <map>
+#include <numeric>
 #include <set>
 #include <utility>
 
@@ -50,12 +51,9 @@ std::string Day23::part2(const std::vector<std::string> &lines) {
         P.insert(node1);
     }
     bronKerboschPivot(R, P, X, net_map, ret);
-    std::string password{};
-    for (const auto &comp_name : ret) { // std::set is ordered
-        password += comp_name + ',';
-    }
-    password.resize(password.size() - 1);
-    return password;
+
+    return std::accumulate(std::next(ret.begin()), ret.end(), *ret.cbegin(),
+        [](std::string l, const std::string &r) { return std::move(l) + ',' + r; });
 }
 
 void Day23::bronKerboschPivot(std::set<std::string> &R, std::unordered_set<std::string> &P,

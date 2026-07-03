@@ -2,6 +2,8 @@
 #include "solution/Day24.h"
 #include <iomanip>
 #include <iostream>
+#include <iterator>
+#include <numeric>
 #include <sstream>
 #include <utility>
 
@@ -93,12 +95,9 @@ std::string Day24::part2(const std::vector<std::string> &lines) {
             break;
         }
     }
-    std::string sol{};
-    for (const auto &output : swaps) {
-        sol += output + ',';
-    }
-    sol.resize(sol.size() - 1);
-    return sol;
+
+    return std::accumulate(std::next(swaps.begin()), swaps.end(), *swaps.cbegin(),
+        [](std::string l, const std::string &r) { return std::move(l) + ',' + r; });
 }
 
 std::pair<std::map<std::string, bool>,

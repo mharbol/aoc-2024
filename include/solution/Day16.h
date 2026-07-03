@@ -6,6 +6,7 @@
 #include <map>
 #include <queue>
 #include <set>
+#include <unordered_map>
 #include <unordered_set>
 
 namespace aoc {
@@ -35,7 +36,7 @@ struct MazeFrame {
     void branchJunction(const std::vector<std::string> &lines,
         std::map<std::pair<size_t, size_t>, size_t> &visited_scores,
         std::map<size_t, std::set<std::pair<size_t, size_t>>> &frame_history,
-        std::map<size_t, size_t> &frame_parent_assoc,
+        std::unordered_map<size_t, size_t> &frame_parent_assoc,
         std::priority_queue<MazeFrame, std::vector<MazeFrame>, std::greater<MazeFrame>> &pq,
         const size_t target, size_t &new_frame_id);
 

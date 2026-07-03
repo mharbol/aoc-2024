@@ -1,5 +1,6 @@
 
 #include "solution/Day17.h"
+#include <numeric>
 #include <sstream>
 #include <string>
 #include <vector>
@@ -102,13 +103,9 @@ bool ElfComputer::incIp() {
 }
 
 std::string ElfComputer::getOutput() const {
-    std::string out{};
-    for (const auto output : output_buf) {
-        out.append(std::to_string(output));
-        out.append(",");
-    }
-    out.resize(out.size() - 1);
-    return out;
+    return std::accumulate(std::next(output_buf.begin()), output_buf.end(),
+        std::to_string(*output_buf.cbegin()),
+        [](std::string l, size_t r) { return std::move(l) + ',' + std::to_string(r); });
 }
 
 size_t ElfComputer::runCheckProgram(const size_t init_A) {
