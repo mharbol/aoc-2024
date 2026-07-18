@@ -166,7 +166,8 @@ std::pair<int32_t, int32_t> Day21::arrowRowCol(const char loc) {
         case 'v': return {1, 1};
         case '<': return {1, 0};
         case '>': return {1, 2};
-        default: return {0, 2}; // case 'A'
+        case 'A': return {0, 2};
+        default: std::unreachable();
     }
 }
 } // namespace aoc
