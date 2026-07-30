@@ -19,7 +19,7 @@ int main(const int argc, const char **const argv) {
     }
 
     const auto &lines = aoc::readInput(args.getFilePath());
-    const auto solution = aoc::Solution::getDay(args.getDay());
+    const auto solution = aoc::Solution::getSolution(args.getDay());
 
     if (1 == args.getPart()) {
         std::cout << solution->part1(lines) << std::endl;

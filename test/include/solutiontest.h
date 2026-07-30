@@ -29,7 +29,7 @@ protected:
         std::ostringstream input_file{};
         input_file << base_path << std::setw(2) << std::setfill('0') << day << ".txt";
 
-        const auto solution = aoc::Solution::getDay(day);
+        const auto solution = aoc::Solution::getSolution(day);
 
         const std::vector<std::string> lines = aoc::readInput(input_file.str());
 

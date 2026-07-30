@@ -18,7 +18,7 @@ public:
      * @param day day number for the desired Solution
      * @return the associated Solution object if it exists, otherwise `nullptr`
      */
-    static std::unique_ptr<Solution> getDay(size_t day);
+    static std::unique_ptr<Solution> getSolution(size_t day);
 
     /**
      * The solution for part 1.

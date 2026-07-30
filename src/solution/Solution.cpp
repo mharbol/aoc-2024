@@ -27,7 +27,7 @@
 #include <cstddef>
 #include <memory>
 
-std::unique_ptr<aoc::Solution> aoc::Solution::getDay(size_t day) {
+std::unique_ptr<aoc::Solution> aoc::Solution::getSolution(size_t day) {
     switch (day) {
         case 1: return std::make_unique<aoc::Day01>();
         case 2: return std::make_unique<aoc::Day02>();
