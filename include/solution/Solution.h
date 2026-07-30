@@ -34,6 +34,8 @@ public:
      */
     virtual std::string part2(const std::vector<std::string> &lines) = 0;
 
+    // Just default destructor since derived classes use only safe types
+    // or define custom virtual destructors. Rule of 5 ok
     virtual ~Solution() = default;
 };
 } // namespace aoc
