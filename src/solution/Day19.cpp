@@ -22,7 +22,7 @@ std::string Day19::part2(const std::vector<std::string> &lines) {
     const auto towels = parseTowels(*iter);
     ++iter;
     while (++iter != lines.end()) {
-        std::map<size_t, size_t> cache{};
+        std::unordered_map<size_t, size_t> cache{};
         acc += countConstructions(*iter, 0, towels, cache);
     }
     return std::to_string(acc);
@@ -74,7 +74,7 @@ bool Day19::subsMatch(const std::string &base, const std::string &substr, size_t
 }
 
 size_t Day19::countConstructions(const std::string &pattern, const size_t idx,
-    const std::vector<std::string> &towels, std::map<size_t, size_t> &cache) const {
+    const std::vector<std::string> &towels, std::unordered_map<size_t, size_t> &cache) const {
 
     if (cache.contains(idx)) {
         return cache.at(idx);

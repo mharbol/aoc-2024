@@ -15,7 +15,6 @@ std::string Day21::part2(const std::vector<std::string> &lines) {
 
 template <size_t DEPTH>
 inline std::string Day21::solve(const std::vector<std::string> &lines) {
-    ideal_trav_cache.clear();
     size_t acc{};
     for (const auto &code : lines) {
         size_t min_len = ~0;

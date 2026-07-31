@@ -4,8 +4,8 @@
 
 #include "Solution.h"
 #include <cstddef>
-#include <map>
 #include <string>
+#include <unordered_map>
 
 namespace aoc {
 class Day19 : public Solution {
@@ -20,7 +20,7 @@ private:
     bool isConstructable(const std::string &pattern, const size_t idx,
         const std::vector<std::string> &towels) const;
     size_t countConstructions(const std::string &pattern, const size_t idx,
-        const std::vector<std::string> &towels, std::map<size_t, size_t> &cache) const;
+        const std::vector<std::string> &towels, std::unordered_map<size_t, size_t> &cache) const;
 };
 } // namespace aoc
 #endif

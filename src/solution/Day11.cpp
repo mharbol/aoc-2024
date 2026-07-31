@@ -8,7 +8,6 @@ namespace aoc {
 std::string Day11::part1(const std::vector<std::string> &lines) {
     auto stones = parse(lines.at(0));
     size_t acc{};
-    cache.clear();
     for (const auto stone : stones) {
         acc += expandStone(stone, 25);
     }
@@ -18,7 +17,6 @@ std::string Day11::part1(const std::vector<std::string> &lines) {
 std::string Day11::part2(const std::vector<std::string> &lines) {
     auto stones = parse(lines.at(0));
     size_t acc{};
-    cache.clear();
     for (const auto stone : stones) {
         acc += expandStone(stone, 75);
     }
