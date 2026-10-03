@@ -1,5 +1,5 @@
-#ifndef __AOC_FILEREAD_H__
-#define __AOC_FILEREAD_H__
+#ifndef _AOC_FILEREAD_H_
+#define _AOC_FILEREAD_H_
 
 #include <string>
 #include <vector>

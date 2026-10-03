@@ -1,6 +1,6 @@
 
-#ifndef __AOC_DAY_04_H__
-#define __AOC_DAY_04_H__
+#ifndef _AOC_DAY_04_H_
+#define _AOC_DAY_04_H_
 
 #include "Solution.h"
 

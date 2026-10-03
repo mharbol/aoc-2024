@@ -1,6 +1,6 @@
 
-#ifndef __AOC_SOLUTION_H__
-#define __AOC_SOLUTION_H__
+#ifndef _AOC_SOLUTION_H_
+#define _AOC_SOLUTION_H_
 
 #include <cstddef>
 #include <memory>

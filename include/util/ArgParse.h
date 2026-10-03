@@ -1,6 +1,6 @@
 
-#ifndef __AOC_ARGPARSE_H__
-#define __AOC_ARGPARSE_H__
+#ifndef _AOC_ARGPARSE_H_
+#define _AOC_ARGPARSE_H_
 
 #include <cstddef>
 #include <string>

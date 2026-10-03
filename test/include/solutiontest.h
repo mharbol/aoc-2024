@@ -1,6 +1,6 @@
 
-#ifndef __AOC_SOLUTIONTEST_H__
-#define __AOC_SOLUTIONTEST_H__
+#ifndef _AOC_SOLUTIONTEST_H_
+#define _AOC_SOLUTIONTEST_H_
 
 #include "solution/Solution.h"
 #include "util/fileread.h"

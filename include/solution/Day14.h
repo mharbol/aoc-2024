@@ -1,6 +1,6 @@
 
-#ifndef __AOC_DAY_14_H__
-#define __AOC_DAY_14_H__
+#ifndef _AOC_DAY_14_H_
+#define _AOC_DAY_14_H_
 
 #include "Solution.h"
 #include <cstdint>
