@@ -22,7 +22,7 @@ std::string Day25::part2(const std::vector<std::string> &) {
     return "";
 }
 
-std::pair<std::vector<lockkey_t>, std::vector<lockkey_t>> Day25::parse(
+std::pair<std::vector<Day25::lockkey_t>, std::vector<Day25::lockkey_t>> Day25::parse(
     const std::vector<std::string> &lines) {
 
     std::vector<lockkey_t> locks{}, keys{};

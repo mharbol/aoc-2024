@@ -7,9 +7,12 @@
 #include <vector>
 
 namespace aoc {
-typedef std::tuple<uint_fast8_t, uint_fast8_t, uint_fast8_t, uint_fast8_t, uint_fast8_t>
-    lockkey_t;
 class Day25 : public Solution {
+
+private:
+    typedef std::tuple<uint_fast8_t, uint_fast8_t, uint_fast8_t, uint_fast8_t, uint_fast8_t>
+        lockkey_t;
+
 public:
     std::string part1(const std::vector<std::string> &lines) override;
     std::string part2(const std::vector<std::string> &lines) override;
